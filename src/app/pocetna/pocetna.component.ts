@@ -24,21 +24,17 @@ export class PocetnaComponent {
 
   
  
-  this._api.dohvatiPodatke({'email': this.formData.username, 'lozinka': this.password}).subscribe(res=>{
+  this._api.dohvatiPodatke({'album_id': this.formData.album_id, 'id': this.id}).subscribe(res=>{
     if(res.success == true){
       sessionStorage.setItem('album_id', res.data.kor_ime);
       sessionStorage.setItem('id', res.data.kor_prezime);
       sessionStorage.setItem('title', res.data.kor_email);
       sessionStorage.setItem('url', res.data.kor_telefon);
       sessionStorage.setItem('thumbnailUrl', res.data.kor_aktivan);
-      this.authService.logIn(this.formData.username, this.password);
-      this.loading = false;
-    } else {
-      this.loading = false;
-      notify("Korisnik ne postoji ili nije aktivan!", "error");
+    
     }
   },err => {
     notify(err.message, "error");
-    this.loading = false;
+    
   });
 }
