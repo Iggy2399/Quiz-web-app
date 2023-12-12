@@ -9,6 +9,6 @@ import { Router } from '@angular/router';
   styleUrl: './pocetna.component.css'
 })
 export class PocetnaComponent {
-
+  
+  }
  
-}

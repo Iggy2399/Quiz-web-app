@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './Login/login.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
+import { ApiService } from '../servisi/api.services';
 
 
 @Component({
@@ -15,3 +16,5 @@ import { PocetnaComponent } from './pocetna/pocetna.component';
 export class AppComponent {
   title = 'projekt';
 }
+
+
