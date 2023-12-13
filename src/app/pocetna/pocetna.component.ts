@@ -1,15 +1,19 @@
-import { Component, NgModule, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../servisi/api.services';
+import { NgForOf } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
 
 
 
 @Component({
   selector: 'app-pocetna',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './pocetna.component.html',
-  styleUrl: './pocetna.component.css'
+  styleUrl: './pocetna.component.css',
+  
 })
 export class PocetnaComponent {
   
@@ -21,20 +25,46 @@ export class PocetnaComponent {
   recoveryCode: string = '';
   sendEmailVisible: boolean = false;
   formDataEmail: any = {};
+  podaci : any = []
+  src: any;
+  http: any;
+  
+
+  constructor(
+    public _api: ApiService
+    
+  ) {
+    this.dohvatipodatke()
+    
+    
+  }
+
+  dohvatipodatke(){
+    this._api.dohvatiPodatke().subscribe(res=>{
+        console.log(res)
+        this.podaci = res
+    },err => {
+      alert("Neuspješno dohvačanje podataka")
+      /*alert(err.message)*/
+      /*notify(err.message, "error");*/
+      
+    });
+  }
+ 
+
+  
+  prikazSlike(src : any){
+   console.log(src.url)
+   /*let url = new URL('slika',src.url)*/
+   window.open(src.url)
+   
+
+  
+    
+  }
+}
+
+  
 
   
  
-  this._api.dohvatiPodatke({'album_id': this.formData.album_id, 'id': this.id}).subscribe(res=>{
-    if(res.success == true){
-      sessionStorage.setItem('album_id', res.data.kor_ime);
-      sessionStorage.setItem('id', res.data.kor_prezime);
-      sessionStorage.setItem('title', res.data.kor_email);
-      sessionStorage.setItem('url', res.data.kor_telefon);
-      sessionStorage.setItem('thumbnailUrl', res.data.kor_aktivan);
-    
-    }
-  },err => {
-    notify(err.message, "error");
-    
-  });
-}

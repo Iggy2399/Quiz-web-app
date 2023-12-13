@@ -1,33 +1,24 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">albumId</th>
-        <th scope="col">Id</th>
-        <th scope="col">Title</th>
-        <th scope="col">url</th>
-    
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>twitter</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+    <table class="table border" style="width: 50%;">
+      <thead>
+        <tr>
+          <td>Album ID</td>
+          <td>ID</td>
+          <td>Title</td>
+          <td>ThumbnailUrl</td>
+        </tr>
+      </thead>
+      <tbody *ngFor="let album of podaci">
+        <tr>
+          <td>{{album.albumId}}</td>
+          <td>{{album.id}}</td>
+          <td>{{album.title}}</td>
+          <td><img src="{{album.thumbnailUrl}}"  (click)="prikazSlike(album)"></td>
 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   

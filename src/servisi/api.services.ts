@@ -13,8 +13,11 @@ export class ApiService{
         private _http: HttpClient
       ){}
     
-    dohvatiPodatke(a: any){
-        return this._http.post('https://jsonplaceholder.typicode.com/photos' + 'podaci' , a)
+    dohvatiPodatke(){
+        return this._http.get('https://jsonplaceholder.typicode.com/photos')
         .pipe(map((res: any) => res ));
     }
+
+    
+    
 }
