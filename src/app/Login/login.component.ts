@@ -10,5 +10,16 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/rou
 })
 export class LoginComponent{
 
+    constructor(){
+
+    }
+    prijava(){
+        alert("Niste unijeli podatke!")
+    }
+
+    
+
+    
+
 }
 
