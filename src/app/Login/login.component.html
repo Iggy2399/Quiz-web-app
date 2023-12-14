@@ -26,8 +26,9 @@
           <input id="email" type="text" formControlName="email"><br>
           <label for="lozinka">Lozinka</label><br>
           <input id="lozinka" type="text" formControlName="lozinka"><br>
+          <p>Unesite podatke</p>
         </div>
-        <button class="btn btn-success pull-right"style="margin-left: 40%; margin-top: 5px;" routerLinkActive="router-link-active" (click)="prijava()">Prijavi se</button>
+        <button [disabled]="!user.valid" class ="btn btn-success pull-right"style="margin-left: 40%; margin-top: 5px;" routerLinkActive="router-link-active" (click)="prijava()">Prijavi se</button>
       </form>
       
       </div>
