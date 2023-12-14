@@ -4,6 +4,7 @@ import { LoginComponent } from './Login/login.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 
 
+
 export const routes: Routes = [
     {   
         path : 'login',
@@ -11,7 +12,8 @@ export const routes: Routes = [
     },
     {
         path: 'pocetna',
-        component: PocetnaComponent
+        component: PocetnaComponent,
+        
         
     },
     {

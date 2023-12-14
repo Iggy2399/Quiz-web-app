@@ -1,17 +1,35 @@
-    <div class="container">
+   <!---- <div class="container">
       <h3 style="margin-left: 40%; ;">Login</h3> <hr>
       <div class="row">
         <div class="col-xs-12">
         <form action="" method="post">
           <div style="margin-left: 40%;">
           <label for="email">E-mail</label> <br>
-          <input type="email" name="email" id="email"><br>
+          <input type="email" name="email" id="email" [(ngModel)]="user.email"><br>
           <label for="lozinka">Lozinka</label><br>
-          <input type="password" name="lozinka" id="lozinka" minlength="6" maxlength="12" required><br>
+          <input type="password" name="lozinka" id="lozinka" minlength="6" maxlength="12" required [(ngModel)]="user.lozinka"><br>
           
         </div>
       </form>
-     <button class="btn btn-success pull-right"style="margin-left: 40%; margin-top: 5px;" [routerLink]="['/pocetna']" routerLinkActive="router-link-active" (click)="prijava()">Prijavi se</button>
+     <button class="btn btn-success pull-right"style="margin-left: 40%; margin-top: 5px;" routerLinkActive="router-link-active" (click)="prijava()">Prijavi se</button>
+    </div>
+  </div>-->
+
+
+  <div class="container">
+    <h3 style="margin-left: 40%;">Login</h3> <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        <form [formGroup]="user" (ngSubmit)="posaljiPodatke(user)">
+          <div style="margin-left: 40%;">
+          <label for="email">E-mail</label><br>
+          <input id="email" type="text" formControlName="email"><br>
+          <label for="lozinka">Lozinka</label><br>
+          <input id="lozinka" type="text" formControlName="lozinka"><br>
+        </div>
+        <button class="btn btn-success pull-right"style="margin-left: 40%; margin-top: 5px;" routerLinkActive="router-link-active" (click)="prijava()">Prijavi se</button>
+      </form>
+      
+      </div>
     </div>
   </div>
-
