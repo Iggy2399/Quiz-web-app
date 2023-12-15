@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/rou
 import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms";
 import { ReactiveFormsModule, FormBuilder} from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { timeout } from "rxjs";
 
 
 
@@ -23,6 +24,8 @@ import { CommonModule } from "@angular/common";
 })
 export class LoginComponent{
     user : FormGroup;
+    state : boolean = false;
+    failed : boolean = false;
     
     
     constructor(
@@ -37,17 +40,18 @@ export class LoginComponent{
 
         })             
     }
-    prijava(){
-       
+    async prijava(){
+        
         console.log('user data:',this.user);
         if(this.user.value.email === "admin@admin.hr" && this.user.value.lozinka === "admin"){
-            this.router.navigate(['/pocetna']);
-            
-            alert("Logiranje uspješno!")
-            return true
+            this.state = !this.state;
+            await new Promise(resolve => setTimeout(resolve,2000))
+            this.router.navigate(['/pocetna']);    
+                 
         }else{
-            alert("Logiranje neuspješno!")
-            return false
+            this.failed = !this.failed
+            
+            
 
         }
      }

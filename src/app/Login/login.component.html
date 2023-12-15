@@ -33,7 +33,8 @@
           id="typePasswordX-2" class="form-control form-control-lg">
           <p>Unesite podatke</p>
           <button type = "button" [disabled]="!user.valid" class ="btn btn-success pull-right"style="margin-top: 5px;"  (click)="prijava()" routerLinkActive="router-link-active" >Prijavi se</button>
-          
+          <div *ngIf="state === true" class="alert alert-success" role="alert">Prijava ispravna</div>
+          <div *ngIf="failed === true" class="alert alert-danger" role="alert">Prijava neispravna!</div>
         
           
           </form>
