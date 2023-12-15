@@ -27,7 +27,7 @@
           <form [formGroup]="user" (ngSubmit)="posaljiPodatke(user)">
           <label class="form-label" for="typeEmailX-2"></label>
           <input type="text" formControlName="email"
-          id="typeEmailX-2" class="form-control form-control-lg" placeholder="E-mail">
+          id="typeEmailX-2" class="form-control form-control-lg" placeholder="E-mail" required="true">
           <label class="form-label" for="typePasswordX-2"></label>
           <input id="lozinka" type="password" formControlName="lozinka" placeholder="Lozinka"
           id="typePasswordX-2" class="form-control form-control-lg">

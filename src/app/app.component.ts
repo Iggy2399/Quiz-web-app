@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, LoginComponent, RouterLink,
-     RouterLinkActive,],
+     RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

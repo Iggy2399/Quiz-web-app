@@ -1,19 +1,39 @@
-<section>
-  <form action="" method="post">
+<div class="container">
 
-<h4>Unesite nove podatke u tablicu</h4>
-<label for="albumid"></label>
-<input type="text" name="albumid" placeholder="Album ID"><br>
-<label for="id"></label>
-<input type="text" name="id" placeholder="ID"><br>
-<label for="title"></label>
-<input type="text" name="title" placeholder="Title"><br>
-<label for="url"></label>
-<input type="text" name="url" placeholder="Url">
-</form>
-<button type="submit" (click)="dodajElement()">Dodaj element</button>
-</section> <br>
+  <form  class="mt-3" (ngSubmit)="addUser()" ngNativeValidate>
+      <div class="form-row">
+          <div class="form-group col-md-5">
+              <input id="firstName" name="firstName" type="text" class="form-control" placeholder="First Name" [(ngModel)] = 'user.firstName' required />
+          </div>
+          <div class="form-group col-md-5">
+              <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" [(ngModel)] = 'user.lastName' required />
+          </div>
+          <div class="form-group col-md-2">
+              <button type="submit" class="btn btn-primary">Save User</button>
+          </div>
+      </div>
+  </form>
 
+  <div class="table-responsive-sm">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+              </tr>
+          </thead>
+          <tbody>              
+              <ng-container *ngFor="let u of _users.reverse(); let i = index">
+              <tr>
+                  <td>{{ u.firstName }}</td>
+                  <td>{{ u.lastName }}</td>
+                </tr>
+            </ng-container>
+          </tbody>          
+      </table>
+    </div>    
+
+</div>
 
 <div class="container">
   <div class="row">
@@ -34,8 +54,7 @@
           <td><img src="{{album.thumbnailUrl}}" (click)="prikazSlike(album)"></td>
 
         </tr>
-        <tr>
-        </tr>
+        
       </tbody>
     </table>
   </div>
