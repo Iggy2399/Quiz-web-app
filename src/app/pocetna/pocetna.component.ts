@@ -35,6 +35,8 @@ export class PocetnaComponent {
     
   ) {
     this.dohvatipodatke()
+    this.dodajElement()
+    
     
     
   }
@@ -43,12 +45,15 @@ export class PocetnaComponent {
     this._api.dohvatiPodatke().subscribe(res=>{
         console.log(res)
         this.podaci = res
-    },err => {
+    },err => 
       alert("Neuspješno dohvačanje podataka")
       /*alert(err.message)*/
       /*notify(err.message, "error");*/
       
-    });
+    );
+  }
+  dodajElement(){
+    
   }
  
 
@@ -57,9 +62,6 @@ export class PocetnaComponent {
    console.log(src.url)
    /*let url = new URL('slika',src.url)*/
    window.open(src.url)
-   
-
-  
     
   }
 }

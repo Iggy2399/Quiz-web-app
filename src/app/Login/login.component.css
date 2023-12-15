@@ -1,5 +1,7 @@
-.container{
-    margin-top: 30%;
-    margin-bottom: 40%;
-
+input:focus::placeholder{
+    color: transparent;
+}
+.vh-100{
+    background-color:burlywood ;
+    
 }

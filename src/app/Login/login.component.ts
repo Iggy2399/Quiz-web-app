@@ -2,6 +2,7 @@ import { Component, NgModule } from "@angular/core";
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms";
 import { ReactiveFormsModule, FormBuilder} from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 
 
@@ -12,6 +13,7 @@ import { ReactiveFormsModule, FormBuilder} from "@angular/forms";
         RouterLinkActive,
         FormsModule, 
         ReactiveFormsModule,
+        CommonModule
         
         
         ],
@@ -36,25 +38,27 @@ export class LoginComponent{
         })             
     }
     prijava(){
-        
+       
         console.log('user data:',this.user);
-        
-        
-
         if(this.user.value.email === "admin@admin.hr" && this.user.value.lozinka === "admin"){
             this.router.navigate(['/pocetna']);
-        alert("Logiranje uspješno!")
+            
+            alert("Logiranje uspješno!")
+            return true
         }else{
-        alert("Logiranje neuspješno!")
+            alert("Logiranje neuspješno!")
+            return false
 
         }
-    }
+     }
+    
     posaljiPodatke(data: any){
        
     }
-}
 
 
 
+
+}  
 
     
