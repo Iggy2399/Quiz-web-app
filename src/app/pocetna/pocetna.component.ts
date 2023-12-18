@@ -1,81 +1,133 @@
 import { Component,  ViewChild, AfterViewInit, OnInit, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ApiService } from '../../servisi/api.services';
 import { NgForOf } from '@angular/common';
 import { CommonModule,} from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { map } from 'rxjs';
+
 
 
 @Component({
   selector: 'app-pocetna',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './pocetna.component.html',
   styleUrl: './pocetna.component.css',
   
 })
 export class PocetnaComponent {
-  
-  loading = false;
-  loginVisible: boolean = true;
-  formData: any = {};
-  passwordMode: string = "password";
-  formDataReset: any = {};
-  recoveryCode: string = '';
-  sendEmailVisible: boolean = false;
-  formDataEmail: any = {};
+  router: any;
   podaci : any = []
   src: any;
   http: any;
   files : Array <string> = []
   user: any;
   _users: any;
+  korisnik: any = {
+    ime: '',
+    telefon: ''
+  };
+  spremi: any;
+  ukupanbrojkorisnika: any;
+  svikorisnici: any[] = [
+    {
+      'id': 0,
+      'ime': 'Test',
+      'telefon': '+38598098098'
+    },
+    {
+      'id': 1,
+      'ime': 'Test 2',
+      'telefon': '+38598098092'
+    }
+    
+  ];
   
+  uredjujem: number = 0;
 
   constructor(
     public _api: ApiService
     
   ) {
-    this.dohvatipodatke()  
+    //this.dohvatipodatke()  
   }
-
-  dohvatipodatke(){
-    this._api.dohvatiPodatke().subscribe(res=>{
-        console.log(res)
-        this.podaci = res
-    },err => 
-      alert("Neuspješno dohvačanje podataka")
-      /*alert(err.message)*/
-      /*notify(err.message, "error");*/
-      
-    );
+  Router(){
+  this.router.navigate(['/api-call']);
   }
+  dodajKorisnika(korisnik : any){
+    this.korisnik = {
+      'ime': korisnik.ime,
+      'telefon': korisnik.telefon
+    }
+    console.log(this.korisnik);
+    this.svikorisnici.push(this.korisnik);
 
-  addUser()
-  {
-      this.user.id = Math.floor(Math.random() * 100000);
-
-      // https://stackoverflow.com/questions/35959372/property-assign-does-not-exist-on-type-objectconstructor
-      const newUser = (<any>Object).assign({}, this.user); // copy, -t es6
-
-      // https://stackoverflow.com/questions/64566579/home-come-object-assign-works-for-sending-in-a-copy-of-the-object-to-a-function
-      // const newUser = { ...this.user }; // This doesn't work since expected type in addUser() is user: User        
-      // this._users.push(this.user);
-      this._users.push(newUser);
-
-      // this.service.addUser(newUser);
-  }
-  
-  prikazSlike(src : any){
-   console.log(src.url)
-   /*let url = new URL('slika',src.url)*/
-   window.open(src.url)
     
   }
+
+  ngOnInit() {
+    this.dohvatiSveKorisnike();
+  }
+
+  dohvatiSveKorisnike(){
+    console.log(this.svikorisnici);
+  
+  } 
+
+
+  urediKorisnikaTablica(korisnik : any, y:any){
+    this.uredjujem = 1;
+    for(let i = 0; i < this.svikorisnici.length; i++){
+      if(this.svikorisnici[i].id == y){
+        this.korisnik = {
+          'id':  korisnik.id,
+          'ime': korisnik.ime,
+          'telefon': korisnik.telefon
+        };
+        console.log(this.svikorisnici[i]);
+      }
+    }
+  }
+
+  urediKorisnika(korisnik: any){
+    this.uredjujem = 0;
+    console.log(korisnik);
+    for(let i = 0; i < this.svikorisnici.length; i++){
+      //console.log(this.svikorisnici[i]);
+      if(this.svikorisnici[i].id == korisnik.id){
+        this.svikorisnici[i] = {
+          'id': korisnik.id,
+          'ime': korisnik.ime,
+          'telefon': korisnik.telefon
+        }
+        console.log(this.svikorisnici[i]);
+        this.korisnik = {};
+      }
+    }
+  }
+
+  obrisiKorisnika(korisnik : any){
+    for (let i = 0; i< this.svikorisnici.length; i++){
+      if(this.svikorisnici[i].id == korisnik.id){
+      this.svikorisnici.pop();
+      }
+    }
+  
+  }   
+    
 }
+    
+
 
   
+  
+
+  
+  
+
+
 
   
  
