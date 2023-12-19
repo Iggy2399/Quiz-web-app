@@ -1,42 +1,63 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule,} from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ApiService } from '../../servisi/api.services';
+
+
 
 @Component({
   selector: 'app-pocetna',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, 
+            FormsModule, 
+            RouterOutlet, 
+            RouterLink, 
+            RouterLinkActive, 
+            ReactiveFormsModule],
   templateUrl: './pocetna.component.html',
   styleUrl: './pocetna.component.css',
   
 })
 export class PocetnaComponent {
 
-  korisnik: any = {
-    ime: '',
-    telefon: ''
-  };
+
+  korisnik: any = this.fb.group({
+    id: [null],
+    ime: ['',[Validators.required, Validators.minLength(2)]],
+    god_rodenja: [null, Validators.required],
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    slika: ['', Validators.required]
+  })
+
+  
+
   svikorisnici: any[] = [
     {
       'id': 0,
       'ime': 'Test',
-      'telefon': '+38598098098'
+      'god_rodenja': 2023,
+      'email': 'test@test.hr',
+      'slika': 'url'
     },
     {
       'id': 1,
       'ime': 'Test 2',
-      'telefon': '+38598098092'
+      'god_rodenja': 1999,
+      'email' : 'test@Test.hr',
+      'slika': 'url'
     }
   ];
   
   uredjujem: number = 0;
+  dodajem : number = 0;
+
 
   constructor(
     public _api: ApiService,
-    public _router: Router
+    public _router: Router,
+    private fb : FormBuilder,
   ){}
 
   ngOnInit() {
@@ -47,12 +68,15 @@ export class PocetnaComponent {
     this._router.navigate(['/api-call']);
   }
 
-  dodajKorisnika(korisnik: any){
-    this.korisnik = {
+  dodajKorisnika(){
+   /* this.korisnik = {
       'ime': korisnik.ime,
-      'telefon': korisnik.telefon
-    }
-    this.svikorisnici.push(this.korisnik);
+      'god_rodenja': korisnik.god_rodenja,
+      'email': korisnik.email,
+      'slika': korisnik.slika
+    }*/
+    console.log(this.korisnik.value)
+    this.svikorisnici.push(this.korisnik.value);
   }
 
   dohvatiSveKorisnike(){
@@ -66,7 +90,9 @@ export class PocetnaComponent {
         this.korisnik = {
           'id':  korisnik.id,
           'ime': korisnik.ime,
-          'telefon': korisnik.telefon
+          'god_rodenja': korisnik.god_rodenja,
+          'email': korisnik.email,
+          'slika': korisnik.slika
         };
         console.log(this.svikorisnici[i]);
       }
@@ -80,7 +106,9 @@ export class PocetnaComponent {
         this.svikorisnici[i] = {
           'id': korisnik.id,
           'ime': korisnik.ime,
-          'telefon': korisnik.telefon
+          'god_rodenja': korisnik.god_rodenja,
+          'email': korisnik.email,
+          'slika': korisnik.slika
         }
         this.korisnik = {};
       }
@@ -93,6 +121,11 @@ export class PocetnaComponent {
         this.svikorisnici.pop();
       }
     }
-  }   
+  } 
+  
+  
+  prikaziFormu(){
+   this.dodajem = 1
+  }
     
 }
