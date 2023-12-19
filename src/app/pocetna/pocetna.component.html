@@ -46,7 +46,7 @@
                     <td>{{korisnik.ime}}</td>
                     <td>{{korisnik.god_rodenja}}</td>
                     <td>{{korisnik.email}}</td>
-                    <td>{{korisnik.slika}}</td>
+                    <td><img src="{{korisnik.slika}}" style="width: 50px; height: 50px;"></td>
                     <td class="tablica text-center">
                     <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik, i)"> Uredi</button>
                     <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(korisnik)"> Obriši</button>

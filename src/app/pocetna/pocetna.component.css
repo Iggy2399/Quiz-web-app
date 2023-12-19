@@ -8,10 +8,9 @@
 .container{
     margin-top: 5px;
 }
-.table{
-    overflow-y: scroll;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    height: 250px;
-    display: block;
+.table::-webkit-scrollbar{
+   
+    display: none;
+   
+    
 }

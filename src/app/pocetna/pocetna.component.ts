@@ -4,6 +4,7 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ApiService } from '../../servisi/api.services';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -28,7 +29,7 @@ export class PocetnaComponent {
     ime: ['',[Validators.required, Validators.minLength(2)]],
     god_rodenja: [null, Validators.required],
     email: ['', Validators.compose([Validators.required, Validators.email])],
-    slika: ['', Validators.required]
+    slika: ['', [Validators.required,]]
   })
 
   
@@ -39,14 +40,14 @@ export class PocetnaComponent {
       'ime': 'Test',
       'god_rodenja': 2023,
       'email': 'test@test.hr',
-      'slika': 'url'
+      'slika': 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
     },
     {
       'id': 1,
       'ime': 'Test 2',
       'god_rodenja': 1999,
       'email' : 'test@Test.hr',
-      'slika': 'url'
+      'slika': 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
     }
   ];
   
