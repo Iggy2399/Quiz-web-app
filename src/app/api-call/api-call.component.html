@@ -1,27 +1,22 @@
 <div class="container">
-    <div class="row">
-      <table class="table border" style="width: 50%;">
-        <thead>
-          <tr>
-            <td>Album ID</td>
-            <td>ID</td>
-            <td>Title</td>
-            <td>ThumbnailUrl</td>
-          </tr>
-        </thead>
-        <button *ngIf=""></button>
-        <tbody *ngFor="let album of podaci">
-          <tr>
-            <td>{{album.albumId}}</td>
-            <td>{{album.id}}</td>
-            <td>{{album.title}}</td>
-            
-            <td class = "slike"><img src="{{album.thumbnailUrl}}" (click)="prikazSlike(album)"></td>
-          </tr>
-        </tbody>
-      </table>
-      
-
-    </div>
+  <div class="row">
+    <table class="table border" style="width: 50%;">
+      <thead>
+        <tr>
+          <td>Album ID</td>
+          <td>ID</td>
+          <td>Title</td>
+          <td>ThumbnailUrl</td>
+        </tr>
+      </thead>
+      <tbody *ngFor="let album of podaci">
+        <tr>
+          <td>{{album.albumId}}</td>
+          <td>{{album.id}}</td>
+          <td>{{album.title}}</td>
+          <td class="slike"><img src="{{album.thumbnailUrl}}" (click)="prikazSlike(album)"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-    
+</div>

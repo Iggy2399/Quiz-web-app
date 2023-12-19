@@ -1,78 +1,66 @@
 <div class="container-fluid">
   <div class="row">
-      <div class="col-lg-8">
-        <div class="panel panel-default">
-          <div class="panel-heading">Dodaj/Uredi korisnika:</div>
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Dodaj/Uredi korisnika:</div>
           <div class="panel-body">
             <form name="ImenikForma" novalidate>
-                <div class="form-group">
-                    <div class="row">
-                      <div class="col col-lg-5 col-md-5" ng-class="{ 'has-error' : ImenikForma.ime.$invalid && !ImenikForma.ime.$pristine }">
-                          <div id="input_container">
-                            <input type="text" class="form-control" id="ime" required maxlength="30" placeholder="Ime i prezime" [(ngModel)]="korisnik.ime" [ngModelOptions]="{standalone: true}" #ime="ngModel">
-                          </div>
-                        </div>
-                        <div class="col col-lg-5 col-md-5" ng-class="{ 'has-error' : ImenikForma.telefon.$invalid && !ImenikForma.telefon.$pristine }">
-                            <div id="input_container">
-                              <input type="tel" class="form-control" id="telefon" required placeholder="Telefon" [(ngModel)]="korisnik.telefon" [ngModelOptions]="{standalone: true}" #telefon="ngModel">
-                            </div>
-                          </div>
-                          <div class="col col-lg-2 col-md-2">
-                              <div id="input_container">
-                              <button *ngIf="uredjujem == 0" type="button" class="btn btn-success btn-md" (click)="dodajKorisnika(korisnik)" [disabled]="!ime.valid || !telefon.valid"> Dodaj </button></div> 
-                              <button *ngIf="uredjujem == 1 " type="button" class="btn btn-success btn-md" (click)="urediKorisnika(korisnik)" [disabled]="!ime.valid || !telefon.valid"> Uredi </button>
-                              </div>
-                            </div>
-                          </div>
-                         
+              <div class="form-group">
+                <div class="row">
+                  <div class="col col-lg-5 col-md-5" ng-class="{ 'has-error' : ImenikForma.ime.$invalid && !ImenikForma.ime.$pristine }">
+                    <div id="input_container">
+                      <input type="text" class="form-control" id="ime" required maxlength="30" placeholder="Ime i prezime" [(ngModel)]="korisnik.ime" [ngModelOptions]="{standalone: true}" #ime="ngModel">
+                    </div>
+                  </div>
+                  <div class="col col-lg-5 col-md-5" ng-class="{ 'has-error' : ImenikForma.telefon.$invalid && !ImenikForma.telefon.$pristine }">
+                    <div id="input_container">
+                      <input type="tel" class="form-control" id="telefon" required placeholder="Telefon" [(ngModel)]="korisnik.telefon" [ngModelOptions]="{standalone: true}" #telefon="ngModel">
+                    </div>
+                  </div>
+                  <div class="col col-lg-2 col-md-2">
+                    <div id="input_container">
+                    <button *ngIf="uredjujem == 0" type="button" class="btn btn-success btn-md" (click)="dodajKorisnika(korisnik)" [disabled]="!ime.valid || !telefon.valid"> Dodaj </button></div> 
+                    <button *ngIf="uredjujem == 1" type="button" class="btn btn-success btn-md" (click)="urediKorisnika(korisnik)" [disabled]="!ime.valid || !telefon.valid"> Uredi </button>
+                  </div>
+                </div>
+              </div>      
             </form>
           </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Ukupno korisnika: {{svikorisnici.length}}</div>
+        <div class="panel-body">
+          <form novalidate>
+            <div>
+              <table class="table table-striped table-hover table-responsive" ng-switch-default>
+                <thead>
+                  <tr>
+                    <th class="tablica text-center">Rb.</th>
+                    <th class="tablica text-center">Ime</th>
+                    <th class="tablica text-center">Telefon</th>
+                    <th class="tablica text-center">Uredi | Obriši</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let kor of svikorisnici; let i = index">
+                    <td class="tablica text-center">{{i+1}}.</td>
+                    <td class="tablica text-center">{{kor.ime}}</td>
+                    <td class="tablica text-center">{{kor.telefon}}</td>
+                    <td class="tablica text-center">
+                      <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(kor, i)"><i class="glyphicon glyphicon-edit"></i> Uredi</button>
+                      <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(kor)"><i class="glyphicon glyphicon-trash"></i> Obriši</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">Ukupno korisnika: {{ukupanbrojkorisnika}}</div>
-            <div class="panel-body">
-              <form novalidate>
-                <div>
-                  <table  class="table table-striped table-hover table-responsive" ng-switch-default>
-                    <thead>
-                      <tr>
-                        <th class="tablica text-center">Rb.</th>
-                        <th class="tablica text-center">Ime</th>
-                        <th class="tablica text-center">Telefon</th>
-                        <th class="tablica text-center">Uredi | Obriši</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let kor of svikorisnici; let i = index">
-                        <td class="tablica text-center">{{i+1}}.</td>
-                        <td class="tablica text-center">{{kor.ime}}</td>
-                        <td class="tablica text-center">{{kor.telefon}}</td>
-                        <td class="tablica text-center">
-                          <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(kor, i)"><i class="glyphicon glyphicon-edit"></i> Uredi</button>
-                          <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(kor)"><i class="glyphicon glyphicon-trash"></i> Obriši</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div> 
-    </div>
-
-
-
-   
-
-
-
-
-
-
-
+  </div> 
+</div>
