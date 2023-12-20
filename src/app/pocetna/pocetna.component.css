@@ -1,16 +1,16 @@
-.unos{
+.unos {
     width: 25%;
-}
-#input_container{
-    margin-top: 5px;
-}
-
-.container{
-    margin-top: 5px;
-}
-.table::-webkit-scrollbar{
-   
-    display: none;
-   
     
+}
+#input_container {
+    margin-top: 5px;
+}
+.container {
+    margin-top: 5px;
+}
+.table::-webkit-scrollbar {
+    display: none;
+}
+.form-control{
+    display: inline;
 }

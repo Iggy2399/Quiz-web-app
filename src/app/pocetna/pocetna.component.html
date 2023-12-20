@@ -1,63 +1,65 @@
 <div class="container">
-  <div class ="row">
+  <div class="row">
     <div class="col-xs-12">
       <nav class="navbar bg-light">
         <div class="container-fluid">
           <button type="button" class="btn btn-primary" id="dodaj" (click)="prikaziFormu()">Dodaj</button>
           <h3>Korisnici</h3>
           <button type="button" class="btn btn-danger" [routerLink]="['/login']" routerLinkActive="router-link-active">Odjava</button>
-        
         </div>
       </nav><hr>
-      <div *ngIf="dodajem === 1" class = "unos">
-        <form [formGroup]="korisnik" (ngSubmit)="dodajKorisnika()">
-      <input type="text" class="form-control" id="ime"  placeholder="Ime i prezime"  formControlName="ime" >      
-      <input type="text" class="form-control" id="god_rodenja"  placeholder="Godina rođenja" formControlName="god_rodenja" >             
-      <input type="text" class="form-control" id="E-mail"  placeholder="E-mail"  formControlName = "email">
-      <input type="text" class="form-control" id="slika" placeholder="Slika" formControlName="slika">
       
-    <div class="col col-lg-2 col-md-2">
-      <div id="input_container">
-      <button *ngIf="uredjujem == 0" type="submit" class="btn btn-success btn-md"  [disabled]="!korisnik.valid"> Dodaj </button></div> 
-      <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md" (click)="urediKorisnika(korisnik)" [disabled]="!korisnik.valid"> Uredi </button>
+      <div *ngIf="dodajem == 1 || uredjujem == 1" class="unos">
+        <form class = "form"[formGroup]="korisnik" (ngSubmit)="upravljanjeKorisnikom(korisnik)">
+          <input type="text" class="form-control" id="ime" placeholder="Ime i prezime" formControlName="ime">      
+          <input type="text" class="form-control" id="god_rodenja" placeholder="Godina rođenja" formControlName="god_rodenja">             
+          <input type="text" class="form-control" id="E-mail" placeholder="E-mail" formControlName="email">
+          <input id="file-input" type="file" accept="image/*" (change)="UploadPriprema($event)" multiple>
+          <div class="col col-lg-2 col-md-2">
+            <div id="input_container">
+              <button *ngIf="dodajem == 1" type="submit" class="btn btn-success btn-md">Dodaj</button>
+              <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md">Uredi</button>
+            </div>
           </div>
         </form>
       </div>
-  
-        <div class="panel-heading">Ukupno korisnika: {{svikorisnici.length}}</div>
-        <div class="panel-body">
-          <form>
-            <div>
-              <table class="table table-hover responsive">
-                <thead>
-                  <tr>
-                    <th scope="col">Rb.</th>
-                    <th scope="col">Ime i Prezime</th>
-                    <th scope="col">Godina rođenja</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Slika</th>
-                    <th class="tablica text-center" scope="col">Uredi | Obriši</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <th scope="row"></th>
-                  <tr *ngFor="let korisnik of svikorisnici; let i = index">
-                    <td>{{i+1}}.</td>
-                    <td>{{korisnik.ime}}</td>
-                    <td>{{korisnik.god_rodenja}}</td>
-                    <td>{{korisnik.email}}</td>
-                    <td><img src="{{korisnik.slika}}" style="width: 50px; height: 50px;"></td>
-                    <td class="tablica text-center">
-                    <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik, i)"> Uredi</button>
-                    <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(korisnik)"> Obriši</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </form>
-        </div>
-    </div>
-  </div>
+
+      </div>
+      </div>
+
+
+<div class="panel-heading">Ukupno korisnika: {{svikorisnici.length}}</div>
+  <div class="panel-body">
+        <form>
+          <div>
+            <table class="table table-hover responsive">
+              <thead>
+                <tr>
+                  <th scope="col">Rb.</th>
+                  <th scope="col">Ime i Prezime</th>
+                  <th scope="col">Godina rođenja</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Slika</th>
+                  <th class="tablica text-center" scope="col">Uredi | Obriši</th>
+                </tr>
+              </thead>
+              <tbody>
+                <th scope="row"></th>
+                <tr *ngFor="let korisnik of svikorisnici; let i = index">
+                  <td>{{i+1}}.</td>
+                  <td>{{korisnik.ime}}</td>
+                  <td>{{korisnik.god_rodenja}}</td>
+                  <td><a href="mailto:">{{korisnik.email}}</a></td>
+                  <td><img src="{{korisnik.slika}}" width="50" height="50"></td>
+                  <td class="tablica text-center">
+                    <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik, i)">Uredi</button>
+                    <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(korisnik)">Obriši</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  </form>
+</div>
 </div>
     

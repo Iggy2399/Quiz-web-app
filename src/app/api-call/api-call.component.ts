@@ -6,7 +6,7 @@ import { ApiService } from '../../servisi/api.services';
 @Component({
   selector: 'app-api-call',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule],
   templateUrl: './api-call.component.html',
   styleUrl: './api-call.component.css'
 })
