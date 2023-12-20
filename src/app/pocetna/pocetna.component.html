@@ -3,7 +3,7 @@
     <div class="col-xs-12">
       <nav class="navbar bg-light">
         <div class="container-fluid">
-          <button type="button" class="btn btn-primary" id="dodaj" (click)="prikaziFormu()">Dodaj</button>
+          <button type="button" class="btn btn-primary" id="dodaj" (click)="prikaziFormu()">Dodaj Korisnika</button>
           <h3>Korisnici</h3>
           <button type="button" class="btn btn-danger" [routerLink]="['/login']" routerLinkActive="router-link-active">Odjava</button>
         </div>
@@ -18,7 +18,7 @@
           <div class="col col-lg-2 col-md-2">
             <div id="input_container">
               <button *ngIf="dodajem == 1" type="submit" class="btn btn-success btn-md">Dodaj</button>
-              <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md">Uredi</button>
+              <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md">Uredi </button>
             </div>
           </div>
         </form>

@@ -1,5 +1,5 @@
 .unos {
-    width: 25%;
+  
     
 }
 #input_container {
@@ -13,4 +13,24 @@
 }
 .form-control{
     display: inline;
+}
+
+#ime{
+    width: 25%;
+    display: inline-flex;
+    margin-right: 5px;
+}
+#god_rodenja{
+    width: 25%;
+    display: inline-flex;
+    margin-right: 5px;
+}
+#E-mail{
+    width: 25%;
+    display: inline-flex;
+    margin-right: 10px;
+    position: relative;
+}
+#file-input{
+    
 }
