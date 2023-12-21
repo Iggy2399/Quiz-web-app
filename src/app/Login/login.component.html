@@ -28,8 +28,6 @@
               <input id="lozinka" type="password" formControlName="lozinka" placeholder="Lozinka" id="typePasswordX-2" class="form-control form-control-lg">
               <p>Unesite podatke</p>
               <button type="submit" [disabled]="!user.valid" class="btn btn-success pull-right"style="margin-top: 5px;">Prijavi se</button>
-              <div *ngIf="state === true" class="alert alert-success" role="alert">Prijava ispravna</div>
-              <div *ngIf="failed === true" class="alert alert-danger" role="alert">Prijava neispravna!</div>
             </form>
           </div>
         </div>

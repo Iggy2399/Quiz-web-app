@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/rou
 import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms";
 import { ReactiveFormsModule, FormBuilder} from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     standalone: true,
@@ -25,6 +26,7 @@ export class LoginComponent{
     constructor(
         public router: Router,
         private fb: FormBuilder,
+        private toastr : ToastrService
     ){
         this.user = new FormGroup({
             email : new FormControl('', [Validators.email, Validators.required]),
@@ -34,11 +36,13 @@ export class LoginComponent{
     
     async posaljiPodatke(){
         if(this.user.value.email === "admin@admin.hr" && this.user.value.lozinka === "admin"){
-            this.state = !this.state;
-            await new Promise(resolve => setTimeout(resolve,2000))
+            this.toastr.success("Prijava uspješna!")
+            await new Promise(resolve => setTimeout(resolve,1500))
+            
             this.router.navigate(['/pocetna']); 
         }else{
-            this.failed = !this.failed;
+            this.toastr.error("Email ili lozinka nije ispravna!")
+            
         }
     }
 

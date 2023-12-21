@@ -1,35 +1,76 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <nav class="navbar bg-light">
-        <div class="container-fluid">
-          <button type="button" class="btn btn-primary" id="dodaj" (click)="prikaziFormu()">Dodaj Korisnika</button>
-          <h3>Korisnici</h3>
-          <button type="button" class="btn btn-danger" [routerLink]="['/login']" routerLinkActive="router-link-active">Odjava</button>
-        </div>
-      </nav><hr>
-      
-      <div *ngIf="dodajem == 1 || uredjujem == 1" class="unos">
-        <form class = "form"[formGroup]="korisnik" (ngSubmit)="upravljanjeKorisnikom(korisnik)">
-          <input type="text" class="form-control" id="ime" placeholder="Ime i prezime" formControlName="ime">      
-          <input type="text" class="form-control" id="god_rodenja" placeholder="Godina rođenja" formControlName="god_rodenja">             
-          <input type="text" class="form-control" id="E-mail" placeholder="E-mail" formControlName="email">
-          <input id="file-input" type="file" accept="image/*" (change)="UploadPriprema($event)" multiple>
-          <div class="col col-lg-2 col-md-2">
-            <div id="input_container">
-              <button *ngIf="dodajem == 1" type="submit" class="btn btn-success btn-md">Dodaj</button>
-              <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md">Uredi </button>
-            </div>
+
+<!-- The sidebar -->
+<div class="sidebar">
+  <a class="active" [routerLink]="['/pocetna']" routerLinkActive="router-link-active">Home</a>
+  <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
+  <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
+</div>
+
+<!-- Page content -->
+<div class="content">
+  <div class="container" >
+  
+    <!-- Navigacija i forma -->
+  
+        <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark" style="border-radius: 0.5rem;">
+          <div class="container-fluid">
+            <h3 class="navbar-brand">Korisnici</h3>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <h5 class="nav-link active "id="dodaj"(click)="prikaziFormu()">Dodaj Korisnika</h5>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" id="odjava" [routerLink]="['/login']" routerLinkActive="router-link-active">Odjava</a>
+
+
+                </li>
+              </ul>
+              
           </div>
-        </form>
-      </div>
-
-      </div>
-      </div>
-
-
-<div class="panel-heading">Ukupno korisnika: {{svikorisnici.length}}</div>
-  <div class="panel-body">
+          </div>
+        </nav><hr>
+        <!-- Forma -->
+        <div *ngIf="dodajem == 1 || uredjujem == 1" class="unos">
+          <form class="form"[formGroup]="korisnik" (ngSubmit)="upravljanjeKorisnikom(korisnik)">
+            <input type="text" class="form-control" id="ime" placeholder="Ime i prezime" formControlName="ime">      
+            <input type="text" class="form-control" id="god_rodenja" placeholder="Godina rođenja" formControlName="god_rodenja">             
+            <input type="text" class="form-control" id="E-mail" placeholder="E-mail" formControlName="email">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="UrlChoice()">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Unesite url
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked (click)="Upload()">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Prenesite datoteku
+              </label>
+            </div>
+            <div *ngIf="upload == 1">
+            <input id="file-input" type="file" accept="image/*" (change)="UploadPriprema($event)" multiple>
+          </div>
+          <div *ngIf="url == 1">
+            <input type="text" class="form-control" id="slika" placeholder="Url slike" formControlName="slika">
+          </div>
+            <div class="col col-lg-2 col-md-2">
+              <div id="input_container">
+                <button *ngIf="dodajem == 1" type="submit" class="btn btn-success btn-md" [disabled]="!korisnik.valid">Dodaj</button>
+                <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md">Uredi </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      
+    
+    
+    <!-- Tablica -->
+    <div class="panel-heading">Ukupno korisnika: {{svikorisnici.length}}</div>
+      <div class="panel-body">
         <form>
           <div>
             <table class="table table-hover responsive">
@@ -48,7 +89,7 @@
                 <tr *ngFor="let korisnik of svikorisnici; let i = index">
                   <td>{{i+1}}.</td>
                   <td>{{korisnik.ime}}</td>
-                  <td>{{korisnik.god_rodenja}}</td>
+                  <td>{{korisnik.god_rodenja}}.</td>
                   <td><a href="mailto:">{{korisnik.email}}</a></td>
                   <td><img src="{{korisnik.slika}}" width="50" height="50"></td>
                   <td class="tablica text-center">
@@ -59,7 +100,12 @@
               </tbody>
             </table>
           </div>
-  </form>
-</div>
-</div>
-    
+        </form>
+      </div>
+
+  
+  
+
+
+
+
