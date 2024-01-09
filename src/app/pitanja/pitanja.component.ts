@@ -11,7 +11,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './pitanja.component.css'
 })
 export class PitanjaComponent {
-  listaPitanje : any[] = [];
+
+  prikaziOdgovor : boolean = false;
+  listaPitanja : any[] = [];
   trenutnoPitanje: number = 0;
   ucitano : Boolean = false;
   constructor(private http: HttpClient){}
@@ -22,18 +24,21 @@ ngOnInit(): void{
 
   ucitajPitanja(){
     this.http.get("../assets/pitanja.json").subscribe((data:any)=>{
-      this.listaPitanje = data;
+      this.listaPitanja = data;
     })
   
   }
   iducePitanje(){
-    if(this.trenutnoPitanje < this.listaPitanje.length - 1){
+    if(this.trenutnoPitanje < this.listaPitanja.length - 1){
      this.trenutnoPitanje ++;
     }
   }
   pocniKviz(){
     this.ucitano = true;
   }
-
+  selectOption(option:any) {
+    option.isSelected = true;
+    console.log(option)
+    }
   
 }
