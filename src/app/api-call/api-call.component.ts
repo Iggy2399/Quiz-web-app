@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ApiService } from '../../servisi/api.services';
 
+
 @Component({
   selector: 'app-api-call',
   standalone: true,
