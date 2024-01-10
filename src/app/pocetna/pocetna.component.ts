@@ -3,6 +3,8 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { CommonModule,} from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../../servisi/api.services';
+
 
 
 @Component({
@@ -15,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
     RouterLink, 
     RouterLinkActive, 
     ReactiveFormsModule,
+   
    
     
   ],
@@ -54,15 +57,20 @@ export class PocetnaComponent {
   upload : number = 0;
   url : number = 0;
   image : boolean = false;
+  message : any
 
   constructor(
     public _router: Router,
     private fb : FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private api : ApiService
   ){}
 
   ngOnInit(){
     this.dohvatiSveKorisnike();
+    this.api.getMessage().subscribe(data => {
+      this.message = data;
+    });
   }
 
   Router(){
@@ -178,6 +186,6 @@ export class PocetnaComponent {
     this.upload = 0;
     this.url = 1;
   }
-  
-    
+
+ 
 }

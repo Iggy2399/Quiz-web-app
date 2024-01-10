@@ -4,7 +4,8 @@
   <a class="active" [routerLink]="['/pocetna']" routerLinkActive="router-link-active">Home</a>
   <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
   <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
-  <a [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Pitanja</a>
+  <a [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Kviz</a>
+  <h1 *ngIf="message">{{message.message}}</h1>
 </div>
 
 <!-- Page content -->
@@ -101,6 +102,8 @@
           </div>
         </form>
       </div>
+
+      
 
   
   
