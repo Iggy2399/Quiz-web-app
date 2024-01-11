@@ -32,29 +32,29 @@ export class LoginComponent{
         private activatedRoute: ActivatedRoute
     ){
         this.user = new FormGroup({
+            admin : new FormControl(),
             email : new FormControl('', [Validators.email, Validators.required]),
             lozinka : new FormControl('', [Validators.minLength(5), Validators.maxLength(12), Validators.required])
             
         })             
     }
-
-    ngOnInit(){
-        this.returnUrl = this.activatedRoute.snapshot.queryParams["returnUrl"]
-    }
     get fc(){
         return this.user.controls
     }
-    async posaljiPodatke(){
+    posaljiPodatke(){
        this.isSubmitted = true;
        if(this.user.invalid) return;
-       if(this.userService)
+       
         this.userService.login({email:this.fc["email"].value,
         lozinka:this.fc["lozinka"].value}).subscribe(()=>{
-        this.router.navigate(['/pitanja']); 
-        })
+            this.router.navigate(['/pocetna']); 
+            })
         
+        }
+        
+    
        
             
         }
-    }
+    
 

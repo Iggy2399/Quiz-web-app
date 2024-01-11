@@ -27,7 +27,7 @@ app.post("/api/users/login",(req,res)=>{
         if(user){
             res.send(generateTokenResponse(user))
         }else{
-            res.status(400).send("email ili lozinka nisu ispravni")
+            res.status(400).send("Prijava neuspješna Email ili lozinka nisu ispravni!")
         }
 
 })

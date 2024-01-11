@@ -4,6 +4,7 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
+import { UserService } from '../../servisi/user.services';
 
 
 
@@ -63,7 +64,8 @@ export class PocetnaComponent {
     public _router: Router,
     private fb : FormBuilder,
     private toastr: ToastrService,
-    private api : ApiService
+    private api : ApiService,
+    private userService : UserService
   ){}
 
   ngOnInit(){
@@ -186,6 +188,9 @@ export class PocetnaComponent {
     this.upload = 0;
     this.url = 1;
   }
+  logout(){
+    this.userService.logout();
+ }
 
  
 }

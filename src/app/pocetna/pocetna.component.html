@@ -26,7 +26,7 @@
                   <h5 class="nav-link active "id="dodaj"(click)="prikaziFormu()">Dodaj Korisnika</h5>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" id="odjava" [routerLink]="['/login']" routerLinkActive="router-link-active">Odjava</a>
+                  <a class="nav-link active" id="odjava" (click)="logout()" [routerLink]="['/prijava']" routerLinkActive="router-link-active">Odjava</a>
                 </li>
               </ul>
               
