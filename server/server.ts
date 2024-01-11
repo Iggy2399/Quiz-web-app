@@ -1,22 +1,16 @@
-import { korisnici } from './korisnici';
-import { jwt } from 'jsonwebtoken';
+import  {korisnici}  from './korisnici';
+import  jwt  from 'jsonwebtoken';
+import  express  from 'express';
+import cors from "cors"
 
-const express = require('express'); 
-const { korisnici } = require('./korisnici');
-const app = express(); 
-app.use(express.json())
-// handling CORS 
-app.use((req, res, next) => { 
-    res.header("Access-Control-Allow-Origin",  
-               "http://localhost:4200"); 
-    res.header("Access-Control-Allow-Headers",  
-               "Origin, X-Requested-With, Content-Type, Accept"); 
-    next(); 
-}); 
-  
-
+const app = express();
+app.use(express.json());
+app.use(cors({
+    credentials:true,
+    origin: ["http://localhost:4200"]
+}));
 app.get('/',(req,res)=>{
-    res.send('Porukica')
+    res.send('Server')
 })
 // route for handling requests from the Angular client 
 app.get('/api/message', (req, res) => { 
@@ -25,8 +19,7 @@ app.get('/api/message', (req, res) => {
 }); 
   
 
-app.post("api/users/login",(req,res)=>{
-    const body = req.body;
+app.post("/api/users/login",(req,res)=>{
     const{email, lozinka} = req.body
     const user = korisnici.find(user => user.email === email 
         && user.lozinka === lozinka);
@@ -38,7 +31,7 @@ app.post("api/users/login",(req,res)=>{
         }
 
 })
-const generateTokenResponse = (user) => {
+ const generateTokenResponse = (user:any) => {
     const token = jwt.sign({
         email:user.email, admin:user.admin,
         
@@ -46,6 +39,7 @@ const generateTokenResponse = (user) => {
     user.token = token;
     return user;
 }
+
 app.listen(3000, () => { 
     console.log('Server listening on port 3000'); 
 });

@@ -1,7 +1,7 @@
-
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'
@@ -9,10 +9,14 @@ import { Injectable } from '@angular/core';
 
 
 export class ApiService{
+  
     constructor(
-        private _http: HttpClient
+        private _http: HttpClient,
+        private toastrService : ToastrService
         
-      ){}
+      ){
+        
+      }
 
     getMessage(){
       return this._http.get('http://localhost:3000/api/message');
@@ -21,6 +25,9 @@ export class ApiService{
         return this._http.get('https://jsonplaceholder.typicode.com/photos')
               .pipe(map((res: any) => res));
     }
+    
+
+
    
     
    

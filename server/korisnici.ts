@@ -1,4 +1,4 @@
-export const korisnici =[
+export const korisnici : any[]=[
     {
         ime : "Ivan Ivic",
         email: "ivan.ivic@gmail.com",
@@ -10,6 +10,12 @@ export const korisnici =[
         email: "pero.peric@gmail.com",
         lozinka: "pero",
         admin : false
+    },
+    {
+        ime: "Igor Balić",
+        email: "igor.balic.27@gmail.com",
+        lozinka: "admin",
+        admin: true,
     }
 
 
