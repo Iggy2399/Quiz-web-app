@@ -42,13 +42,7 @@ export class LoginComponent{
         return this.user.controls
     }
     posaljiPodatke(){
-       this.isSubmitted = true;
-       if(this.user.invalid) return;
-       
-        this.userService.login({email:this.fc["email"].value,
-        lozinka:this.fc["lozinka"].value}).subscribe(()=>{
-            this.router.navigate(['/pocetna']); 
-            })
+      
         
         }
         
