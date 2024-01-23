@@ -25,9 +25,12 @@ export class ApiService{
         return this._http.get('https://jsonplaceholder.typicode.com/photos')
               .pipe(map((res: any) => res));
     }
+    loginPodaci(){
+      return this._http.get('http://localhost:3000/api/login')
+              .pipe(map((res:any)=> res));
+    }
+
     
-
-
    
     
    
