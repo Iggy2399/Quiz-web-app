@@ -5,7 +5,7 @@ const db = sql.createPool({
     host:'localhost',
     user: 'root',
     password: null,
-    database: 'baza'
+    database: 'kviz'
 });
 
 
