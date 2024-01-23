@@ -1,8 +1,7 @@
-export class User{
-    id!:string;
-    email!:string;
-    ime!:string;
-    adresa!:string;
-    token!:string;
-    admin!:boolean;
+export interface User{
+    id:number;
+    email:string;
+    ime:string;
+    password:string;
+    admin:boolean;
 }

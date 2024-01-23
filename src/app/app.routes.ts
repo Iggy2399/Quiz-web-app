@@ -4,6 +4,7 @@ import { LoginComponent } from './Login/login.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { ApiCallComponent } from './api-call/api-call.component';
 import { PitanjaComponent } from './pitanja/pitanja.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
     {   
@@ -21,6 +22,10 @@ export const routes: Routes = [
     {
       path: 'pitanja',
       component: PitanjaComponent
+    },
+    {
+      path: 'registracija',
+      component: RegisterComponent
     },
    
     {

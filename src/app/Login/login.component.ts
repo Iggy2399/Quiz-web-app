@@ -1,10 +1,12 @@
-import { Component, NgModule } from "@angular/core";
+import { Component } from "@angular/core";
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms";
 import { ReactiveFormsModule, FormBuilder} from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from "../../servisi/user.services";
+import { AuthService } from "../../servisi/auth.service";
+
+
 
 @Component({
     standalone: true,
@@ -28,8 +30,8 @@ export class LoginComponent{
         public router: Router,
         private fb: FormBuilder,
         private toastr : ToastrService,
-        private userService : UserService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private authService : AuthService
     ){
         this.user = new FormGroup({
             admin : new FormControl(),
@@ -42,7 +44,7 @@ export class LoginComponent{
         return this.user.controls
     }
     posaljiPodatke(){
-      
+       this.authService.login(this.user.value).subscribe((msg)=>console.log(msg));
         
         }
         

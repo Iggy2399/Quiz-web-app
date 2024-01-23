@@ -12,6 +12,7 @@
   
     
   "start": "server.js",
+  
     
   "test": "echo \"Error: no test specified\" && exit 1"
   
@@ -51,7 +52,7 @@
   "@types/jsonwebtoken": "^9.0.5",
   
     
-  "nodemon": "^3.0.2",
+  "nodemon": "^3.0.3",
   
     
   "ts-node": "^10.9.2",

@@ -26,11 +26,11 @@ export class ApiService{
               .pipe(map((res: any) => res));
     }
     loginPodaci(){
-      return this._http.get('http://localhost:3000/login')
+      return this._http.get('http://localhost:3000/api/login')
               .pipe(map((res:any)=> res));
     }
 
-
+    
    
     
    
