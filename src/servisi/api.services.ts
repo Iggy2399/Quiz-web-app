@@ -17,9 +17,9 @@ export class ApiService{
       ){
         
       }
-
-    getMessage(){
-      return this._http.get('http://localhost:3000/api/message');
+    getData(){
+      return this._http.get('http://localhost:3000/api/prikaz_korisnika')
+        .pipe(map((res:any)=>res));
     }
     dohvatiPodatke(){
         return this._http.get('https://jsonplaceholder.typicode.com/photos')

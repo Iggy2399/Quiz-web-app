@@ -21,9 +21,6 @@ export class AuthService {
       first(),
       catchError(this.errorHandlerService.handleError<User>("login"))
       )
-    
-    
-
 
   }
   register(user:Omit<User,"id, uloga">):Observable<User>{

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PocetnaComponent } from './pocetna.component';
+import { AdminComponent } from './pocetna.component';
 
 describe('PocetnaComponent', () => {
-  let component: PocetnaComponent;
-  let fixture: ComponentFixture<PocetnaComponent>;
+  let component: AdminComponent;
+  let fixture: ComponentFixture<AdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PocetnaComponent]
+      imports: [AdminComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PocetnaComponent);
+    fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

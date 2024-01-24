@@ -19,9 +19,7 @@ app.use(cors({
 var apiRoutes = express.Router();
 app.use('/api', apiRoutes);
 
- app.get('/', function(req, res){
-     res.json({ message: 'Poruka'});
- });
+
  
  app.use('/', require('./routes'));
  

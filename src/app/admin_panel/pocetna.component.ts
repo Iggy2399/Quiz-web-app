@@ -25,7 +25,7 @@ import { ApiService } from '../../servisi/api.services';
   templateUrl: './pocetna.component.html',
   styleUrl: './pocetna.component.css',
 })
-export class PocetnaComponent {
+export class AdminComponent {
   
   korisnik: any = this.fb.group({
     id: [null],
@@ -35,22 +35,7 @@ export class PocetnaComponent {
     slika: ['',]
   })
 
-  svikorisnici: any[] = [
-    {
-      'id': 0,
-      'ime': 'Hrvoje Horvat',
-      'god_rodenja': 2023,
-      'email': 'ime1@email.hr',
-      'slika': 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-    },
-    {
-      'id': 1,
-      'ime': 'Janko Janković',
-      'god_rodenja': 1999,
-      'email' : 'ime2@email.hr',
-      'slika': 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-    }
-  ];
+
   datoteka : any;
   tmpSlika: string = "download.png";
   uredjujem: number = 0;
@@ -58,7 +43,8 @@ export class PocetnaComponent {
   upload : number = 0;
   url : number = 0;
   image : boolean = false;
-  message : any
+  korisnici : any;
+  brojKorisnika: number = 0;
 
   constructor(
     public _router: Router,
@@ -68,28 +54,28 @@ export class PocetnaComponent {
     
   ){}
 
-  ngOnInit(){
-    this.dohvatiSveKorisnike();
-    this.api.getMessage().subscribe(data => {
-      this.message = data;
-    });
-  }
-
   Router(){
     this._router.navigate(['/api-call']);
   }
+  ngOnInit(){
+    this.dohvatiPodatke();  
+  }
+  
+  dohvatiPodatke(){
+    this.api.getData().subscribe(res =>{
+       this.korisnici = res.data;
+       this.brojKorisnika = this.korisnici.length
+      console.log(this.korisnici.length)
+    })
 
-  dohvatiSveKorisnike(){
-    console.log(this.svikorisnici);
-  } 
-
+  }
   urediKorisnikaTablica(korisnik: any, index:any){
     console.log(korisnik);
     this.dodajem = 0;
     this.uredjujem = 1;
-    for(let i = 0; i < this.svikorisnici.length; i++){
-      if(this.svikorisnici[i].id == index){
-        console.log(this.svikorisnici[i]);
+    for(let i = 0; i < this.korisnici.length; i++){
+      if(this.korisnici[i].id == index){
+        console.log(this.korisnici[i]);
         this.korisnik.patchValue({
           'id':  korisnik.id,
           'ime': korisnik.ime,
@@ -104,9 +90,9 @@ export class PocetnaComponent {
 
   urediKorisnika(korisnik: any){
     this.uredjujem = 0;
-    for(let i = 0; i < this.svikorisnici.length; i++){
-      if(this.svikorisnici[i].id == korisnik.id){
-        this.svikorisnici[i] = {
+    for(let i = 0; i < this.korisnici.length; i++){
+      if(this.korisnici[i].id == korisnik.id){
+        this.korisnici[i] = {
           'id': korisnik.id,
           'ime': korisnik.ime,
           'god_rodenja': korisnik.god_rodenja,
@@ -121,7 +107,7 @@ export class PocetnaComponent {
   upravljanjeKorisnikom(korisnik: any){
     if(this.dodajem){
       if (this.upload == 1){
-        this.svikorisnici.push({
+        this.korisnici.push({
           'id': korisnik.value.id,
           'ime': korisnik.value.ime,
           'god_rodenja': korisnik.value.god_rodenja,
@@ -133,7 +119,7 @@ export class PocetnaComponent {
       
       }
       else{
-        this.svikorisnici.push({
+        this.korisnici.push({
           'id': korisnik.value.id,
           'ime': korisnik.value.ime,
           'god_rodenja': korisnik.value.god_rodenja,
@@ -143,12 +129,12 @@ export class PocetnaComponent {
         this.toastr.success("Korisnik uspješno dodan!")
         
       }
-      /*this.svikorisnici.push(this.korisnik.value); */
+      /*this.korisnici.push(this.korisnik.value); */
     } 
     if(this.uredjujem){
-      for(let i = 0; i < this.svikorisnici.length; i++){
-        if(this.svikorisnici[i].id == korisnik.value.id){
-          this.svikorisnici[i] = {
+      for(let i = 0; i < this.korisnici.length; i++){
+        if(this.korisnici[i].id == korisnik.value.id){
+          this.korisnici[i] = {
             'id': korisnik.value.id,
             'ime': korisnik.value.ime,
             'god_rodenja': korisnik.value.god_rodenja,
@@ -162,9 +148,9 @@ export class PocetnaComponent {
   }
 
   obrisiKorisnika(korisnik : any){
-    for (let i = 0; i < this.svikorisnici.length; i++){
-      if(this.svikorisnici[i].id == korisnik.id){
-        this.svikorisnici.splice(i,1)
+    for (let i = 0; i < this.korisnici.length; i++){
+      if(this.korisnici[i].id == korisnik.id){
+        this.korisnici.splice(i,1)
         this.toastr.success("Korisnik uspješno obrisan!")
       }
     }

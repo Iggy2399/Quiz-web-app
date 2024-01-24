@@ -28,29 +28,25 @@ export class LoginComponent{
     
     constructor(
         public router: Router,
-        private fb: FormBuilder,
         private toastr : ToastrService,
-        private activatedRoute: ActivatedRoute,
         private authService : AuthService
     ){
         this.user = new FormGroup({
-            admin : new FormControl(),
             email : new FormControl('', [Validators.email, Validators.required]),
             lozinka : new FormControl('', [Validators.minLength(5), Validators.maxLength(12), Validators.required])
             
         })             
     }
-    get fc(){
-        return this.user.controls
-    }
+   
     posaljiPodatke(){
        this.authService.login(this.user.value).subscribe((msg)=>console.log(msg));
-        
-        }
+       this.toastr.success("Logiranje uspješno")
+        this.router.navigate(['/pocetna']);
+    }
         
     
        
             
-        }
+}
     
 
