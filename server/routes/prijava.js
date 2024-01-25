@@ -12,12 +12,14 @@ var korisnik = {
 
         query = mysql.format(query,table);
         funkcije.mysql_query(query, function(podaci){
-            console.log(podaci.data.length);
+            
             if(podaci.data.length===0){
-                res.json({message: "Login neuspješan"})
+                
+                res.json({success : false, message: "Login neuspješan"})
             }else{
                 console.log(podaci);
-            res.json({message: "Login uspješan", data:podaci.data})
+               
+            res.json({success: true, message: "Login uspješan", data:podaci})
             console.log("Query successfully executed");
         
             }

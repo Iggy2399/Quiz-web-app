@@ -20,9 +20,7 @@ export class RegisterComponent {
   user:FormGroup;
 
   constructor(private router: Router,
-              private fb: FormBuilder,
               private toastr : ToastrService,
-              private activatedRoute: ActivatedRoute,
               private authService : AuthService){
 
                 this.user = new FormGroup({
@@ -41,8 +39,13 @@ export class RegisterComponent {
 
 
   posaljiPodatke(){
-    this.authService.register(this.user.value).subscribe((msg)=>console.log(msg));
+   this.authService.register(this.user.value).subscribe((msg)=>console.log(msg));
+      this.toastr.success("Registracija uspješna!")
+      this.router.navigate(['/login']);
+    }
+    
+    
      
-     }
+     
 
 }

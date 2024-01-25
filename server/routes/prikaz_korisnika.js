@@ -12,6 +12,7 @@ var prikazKorisnika ={
             }else{
                 console.log(podaci);
                 res.send(podaci)
+                
         
             }
        })

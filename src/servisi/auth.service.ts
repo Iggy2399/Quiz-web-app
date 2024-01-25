@@ -10,6 +10,7 @@ import { first, catchError } from 'rxjs';
 export class AuthService {
   private urlLogin = "http://localhost:3000/api/login";
   private urlRegister = "http://localhost:3000/api/register"
+  private urlEdit = "http://localhost:3000/api/edit_user"
   httpOptions : {headers:HttpHeaders}={
     headers : new HttpHeaders({"Content-Type":"application/json"}),
   }
@@ -30,4 +31,11 @@ export class AuthService {
       )
 
   }
-}
+  updateData(user:any, id:string):Observable<User>{
+    return this.http.patch<User>(this.urlEdit,user,this.httpOptions).pipe(
+      first(),
+      catchError(this.errorHandlerService.handleError<User>("update"))
+    )
+    }
+  }
+

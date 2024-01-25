@@ -4,6 +4,7 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
+import { AuthService } from '../../servisi/auth.service';
 
 
 
@@ -18,9 +19,6 @@ import { ApiService } from '../../servisi/api.services';
     RouterLink, 
     RouterLinkActive, 
     ReactiveFormsModule,
-   
-   
-    
   ],
   templateUrl: './pocetna.component.html',
   styleUrl: './pocetna.component.css',
@@ -30,9 +28,8 @@ export class AdminComponent {
   korisnik: any = this.fb.group({
     id: [null],
     ime: ['',[Validators.required, Validators.minLength(2)]],
-    god_rodenja: [null, Validators.required],
     email: ['', Validators.compose([Validators.required, Validators.email])],
-    slika: ['',]
+    
   })
 
 
@@ -51,6 +48,7 @@ export class AdminComponent {
     private fb : FormBuilder,
     private toastr: ToastrService,
     private api : ApiService,
+    private authService : AuthService
     
   ){}
 
@@ -76,7 +74,7 @@ export class AdminComponent {
     for(let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == index){
         console.log(this.korisnici[i]);
-        this.korisnik.patchValue({
+        this.korisnici.patchValue({
           'id':  korisnik.id,
           'ime': korisnik.ime,
           'god_rodenja': korisnik.god_rodenja,
@@ -93,11 +91,10 @@ export class AdminComponent {
     for(let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == korisnik.id){
         this.korisnici[i] = {
-          'id': korisnik.id,
-          'ime': korisnik.ime,
-          'god_rodenja': korisnik.god_rodenja,
-          'email': korisnik.email,
-          'slika': korisnik.slika
+          'id': this.korisnici.id,
+          'ime': this.korisnici.ime_prezime,
+          'email': this.korisnici.email,
+          
         }
         this.korisnik = {};
       }
@@ -108,11 +105,10 @@ export class AdminComponent {
     if(this.dodajem){
       if (this.upload == 1){
         this.korisnici.push({
-          'id': korisnik.value.id,
-          'ime': korisnik.value.ime,
-          'god_rodenja': korisnik.value.god_rodenja,
-          'email': korisnik.value.email,
-          'slika': this.tmpSlika
+          'id': this.korisnici.value.id,
+          'ime': this.korisnici.value.ime,
+          'email': this.korisnici.value.email,
+          
         }
       );
           this.toastr.success("Korisnik uspješno dodan!")
@@ -120,11 +116,10 @@ export class AdminComponent {
       }
       else{
         this.korisnici.push({
-          'id': korisnik.value.id,
-          'ime': korisnik.value.ime,
-          'god_rodenja': korisnik.value.god_rodenja,
-          'email': korisnik.value.email,
-          'slika': korisnik.value.slika
+          'id': this.korisnici.value.id,
+          'ime': this.korisnici.value.ime,
+          'email': this.korisnici.value.email,
+          
         })
         this.toastr.success("Korisnik uspješno dodan!")
         
@@ -150,6 +145,7 @@ export class AdminComponent {
   obrisiKorisnika(korisnik : any){
     for (let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == korisnik.id){
+
         this.korisnici.splice(i,1)
         this.toastr.success("Korisnik uspješno obrisan!")
       }
