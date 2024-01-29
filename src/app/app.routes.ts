@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { LoginComponent } from './Login/login.component';
-import { PocetnaComponent } from './pocetna/pocetna.component';
+import { AdminComponent } from './admin_panel/pocetna.component';
 import { ApiCallComponent } from './api-call/api-call.component';
 import { PitanjaComponent } from './pitanja/pitanja.component';
 import { RegisterComponent } from './register/register.component';
@@ -12,8 +12,8 @@ export const routes: Routes = [
       component: LoginComponent
     },
     {
-      path: 'pocetna',
-      component: PocetnaComponent
+      path: 'admin-panel',
+      component: AdminComponent
     },
     {
       path : 'api-call',

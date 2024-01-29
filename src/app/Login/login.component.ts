@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormBuilder} from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from "../../servisi/auth.service";
+import { ApiService } from "../../servisi/api.services";
 
 
 
@@ -25,32 +26,38 @@ export class LoginComponent{
     user : FormGroup;
     isSubmitted : boolean = false;
     returnUrl: any;
+    state : any;
     
     constructor(
         public router: Router,
-        private fb: FormBuilder,
         private toastr : ToastrService,
-        private activatedRoute: ActivatedRoute,
-        private authService : AuthService
+        private authService : AuthService,
+        private api:ApiService
     ){
         this.user = new FormGroup({
-            admin : new FormControl(),
             email : new FormControl('', [Validators.email, Validators.required]),
             lozinka : new FormControl('', [Validators.minLength(5), Validators.maxLength(12), Validators.required])
             
         })             
     }
-    get fc(){
-        return this.user.controls
-    }
+   
     posaljiPodatke(){
-       this.authService.login(this.user.value).subscribe((msg)=>console.log(msg));
+       this.authService.login(this.user.value).subscribe();
+       this.api.loginPodaci().subscribe(res =>{
+        console.log(res);
         
-        }
+        if(this.state){
+            this.toastr.success("Logiranje uspješno")
+            this.router.navigate(['/admin-panel']);
+        
+    }})
+        
+      
         
     
        
             
-        }
-    
+}
+
+}  
 

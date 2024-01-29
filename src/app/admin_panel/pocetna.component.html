@@ -5,10 +5,12 @@
   <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
   <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
   <a [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Kviz</a>
-  <h1 *ngIf="message">{{message.message}}</h1>
+  <a [routerLink]="['/registracija']" routerLinkActive="router-link-active">Registracija</a>
+ 
 </div>
 
 <!-- Page content -->
+
 <div class="content">
   <div class="container" >
   
@@ -69,31 +71,30 @@
     
     
     <!-- Tablica -->
-    <div class="panel-heading">Ukupno korisnika: {{svikorisnici.length}}</div>
+    <div class="panel-heading">Ukupno korisnika: {{brojKorisnika}}</div>
       <div class="panel-body">
         <form>
           <div>
             <table class="table table-hover responsive">
               <thead>
                 <tr>
-                  <th scope="col">Rb.</th>
+                  <th scope="col">ID</th>
                   <th scope="col">Ime i Prezime</th>
-                  <th scope="col">Godina rođenja</th>
                   <th scope="col">E-mail</th>
-                  <th scope="col">Slika</th>
+                  <th scope="col">Uloga</th>
                   <th class="tablica text-center" scope="col">Uredi | Obriši</th>
                 </tr>
               </thead>
               <tbody>
                 <th scope="row"></th>
-                <tr *ngFor="let korisnik of svikorisnici; let i = index">
-                  <td>{{i+1}}.</td>
-                  <td>{{korisnik.ime}}</td>
-                  <td>{{korisnik.god_rodenja}}.</td>
+                <tr *ngFor="let korisnik of korisnici">
+                  <td>{{korisnik.id}}.</td>
+                  <td>{{korisnik.ime_prezime}}</td>
                   <td><a href="mailto:">{{korisnik.email}}</a></td>
-                  <td><img src="{{korisnik.slika}}" width="50" height="50"></td>
+                  <td>{{korisnik.uloga}}</td>
+                  
                   <td class="tablica text-center">
-                    <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik, i)">Uredi</button>
+                    <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik, korisnik.id)">Uredi</button>
                     <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(korisnik)">Obriši</button>
                   </td>
                 </tr>
