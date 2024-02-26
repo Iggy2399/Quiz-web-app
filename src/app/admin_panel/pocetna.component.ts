@@ -60,7 +60,10 @@ export class AdminComponent {
     this.dohvatiPodatke();  
     
   }
+  urediKorisnika1(){
+    
 
+  }
  
   dohvatiPodatke(){
     this.api.getData().subscribe(res =>{
@@ -88,8 +91,10 @@ export class AdminComponent {
       }
     }
   }
+  
 
   urediKorisnika(korisnik: any){
+    this.authService.updateData(this.korisnik,this.korisnik.id)
     this.uredjujem = 0;
     for(let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == korisnik.id){
