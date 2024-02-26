@@ -18,6 +18,7 @@ export class PitanjaComponent {
   ucitano : Boolean = false;
   pitanja: any ;
   tocan_odgovor: any =[];
+  
   constructor(private http: HttpClient, private api: ApiService){}
 
 ngOnInit(): void{
@@ -43,7 +44,7 @@ ngOnInit(): void{
   }
 
   selectOption(option:any) {
-    option.isSelected = true;
+    option.isSelected = "true";
     console.log(option)
     }
   

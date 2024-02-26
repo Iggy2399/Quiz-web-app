@@ -3,9 +3,9 @@
             <button id="zapocni" [hidden]="ucitano" (click)="pocniKviz()">Započni kviz</button>
         <div class="app" *ngIf="ucitano">
             <h3>{{trenutnoPitanje + 1}}. {{pitanja[trenutnoPitanje].naziv}}</h3>
-            <div class="option" *ngFor="let option of pitanja[trenutnoPitanje] | keyvalue">
+            <div class="option" *ngFor="let option of pitanja[trenutnoPitanje] | keyvalue" [ngClass]="'correct'">
                 <div *ngIf="option.key == 'tocan_odgovor' || option.key == 'odgovor2' || option.key =='odgovor3'">
-            <button class="btn" (click)="selectOption(option)">{{option.value}}</button>
+            <button  class="btn" (click)="selectOption(option)">{{option.value}}</button>
             </div>
         </div>
 
