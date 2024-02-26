@@ -42,6 +42,7 @@ export class AdminComponent {
   image : boolean = false;
   korisnici : any;
   brojKorisnika: number = 0;
+  podaci : any;
 
   constructor(
     public _router: Router,
@@ -57,8 +58,10 @@ export class AdminComponent {
   }
   ngOnInit(){
     this.dohvatiPodatke();  
+    
   }
-  
+
+ 
   dohvatiPodatke(){
     this.api.getData().subscribe(res =>{
        this.korisnici = res.data;

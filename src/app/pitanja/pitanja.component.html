@@ -2,10 +2,11 @@
     <div class="container py-5 h-100">
             <button id="zapocni" [hidden]="ucitano" (click)="pocniKviz()">Započni kviz</button>
         <div class="app" *ngIf="ucitano">
-            <h3>{{trenutnoPitanje + 1}}. {{listaPitanja[trenutnoPitanje].pitanje}}</h3>
-            <div class="option"  *ngFor="let option of listaPitanja[trenutnoPitanje].opcije">
-            <button class="btn" [ngClass]="{'correct':option.isSelected && option.tocno,
-            'incorrect':option.isSelected && !option.tocno}" (click)="selectOption(option)">{{option.odgovor}}</button>
+            <h3>{{trenutnoPitanje + 1}}. {{pitanja[trenutnoPitanje].naziv}}</h3>
+            <div class="option" *ngFor="let option of pitanja[trenutnoPitanje] | keyvalue">
+                <div *ngIf="option.key == 'tocan_odgovor' || option.key == 'odgovor2' || option.key =='odgovor3'">
+            <button class="btn" (click)="selectOption(option)">{{option.value}}</button>
+            </div>
         </div>
 
         <button class="dalje" (click)="iducePitanje()">Dalje</button>

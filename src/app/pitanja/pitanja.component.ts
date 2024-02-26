@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../servisi/api.services';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,29 +14,34 @@ import { CommonModule } from '@angular/common';
 export class PitanjaComponent {
 
   prikaziOdgovor : boolean = false;
-  listaPitanja : any[] = [];
   trenutnoPitanje: number = 0;
   ucitano : Boolean = false;
-  constructor(private http: HttpClient){}
+  pitanja: any ;
+  tocan_odgovor: any =[];
+  constructor(private http: HttpClient, private api: ApiService){}
 
 ngOnInit(): void{
-  this.ucitajPitanja();
+  this.dohvatiPitanja();
+  
 }
 
-  ucitajPitanja(){
-    this.http.get("../assets/pitanja.json").subscribe((data:any)=>{
-      this.listaPitanja = data;
+  dohvatiPitanja(){
+    this.api.dohvatiPitanja().subscribe(res =>{
+    this.pitanja = res.data;
+      console.log(res.data);
     })
-  
   }
+
   iducePitanje(){
-    if(this.trenutnoPitanje < this.listaPitanja.length - 1){
+    if(this.trenutnoPitanje < this.pitanja.length - 1){
      this.trenutnoPitanje ++;
     }
   }
+
   pocniKviz(){
     this.ucitano = true;
   }
+
   selectOption(option:any) {
     option.isSelected = true;
     console.log(option)

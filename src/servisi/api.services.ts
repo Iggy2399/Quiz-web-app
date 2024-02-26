@@ -19,7 +19,7 @@ export class ApiService{
       }
     getData(){
       return this._http.get('http://localhost:3000/api/prikaz_korisnika')
-        .pipe(map((res:any)=>res));
+              .pipe(map((res:any)=>res));
     }
     dohvatiPodatke(){
         return this._http.get('https://jsonplaceholder.typicode.com/photos')
@@ -28,6 +28,10 @@ export class ApiService{
     loginPodaci(){
       return this._http.get('http://localhost:3000/api/login')
               .pipe(map((res:any)=> res));
+    }
+    dohvatiPitanja(){
+      return this._http.get('http://localhost:3000/api/pitanja')
+              .pipe(map((res:any)=>res));
     }
 
     
