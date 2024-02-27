@@ -18,8 +18,13 @@ var korisnik = {
                 res.json({message: "Login neuspješan"})
                 
             }else{
+                 jwt.sign({query},'privatekey',{expiresIn: '1h'},(err,token)=>{
+                    if(err){console.log(err)}
+                    res.send(token);
+                    
+                })
 
-                console.log(podaci);
+            console.log(podaci);
             res.json({ message: "Login uspješan", data:podaci})
             console.log("Query successfully executed");
         

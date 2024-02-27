@@ -5,11 +5,15 @@
             <h3>{{trenutnoPitanje + 1}}. {{pitanja[trenutnoPitanje].naziv}}</h3>
             <div class="option" *ngFor="let option of pitanja[trenutnoPitanje] | keyvalue" [ngClass]="'correct'">
                 <div *ngIf="option.key == 'tocan_odgovor' || option.key == 'odgovor2' || option.key =='odgovor3'">
-            <button  class="btn" (click)="selectOption(option)">{{option.value}}</button>
+                    
+            <button  class="btn" (click)="selectOption(option.key)"  [ngClass]="{'correct' : correctKey && option.key =='tocan_odgovor', 
+            'incorrect': incorrectKey && option.key !='tocan_odgovor'}" [disabled]="correctKey">{{option.value}}</button>
+                    
             </div>
         </div>
-
+        <div *ngIf="trenutnoPitanje < pitanja.length - 1">
         <button class="dalje" (click)="iducePitanje()">Dalje</button>
+        </div>
     </div>
     </div>
 </div>

@@ -18,6 +18,8 @@ export class PitanjaComponent {
   ucitano : Boolean = false;
   pitanja: any ;
   tocan_odgovor: any =[];
+  incorrectKey: boolean = false;
+  correctKey: boolean = false;
   
   constructor(private http: HttpClient, private api: ApiService){}
 
@@ -34,6 +36,8 @@ ngOnInit(): void{
   }
 
   iducePitanje(){
+    this.correctKey = false;
+    this.incorrectKey = false;
     if(this.trenutnoPitanje < this.pitanja.length - 1){
      this.trenutnoPitanje ++;
     }
@@ -44,8 +48,15 @@ ngOnInit(): void{
   }
 
   selectOption(option:any) {
-    option.isSelected = "true";
-    console.log(option)
+    if(option == "tocan_odgovor"){
+    this.correctKey = true;
+    console.log(this.correctKey, option);
+    }else{
+      this.incorrectKey = true;
+      this.correctKey = true;
+      console.log(this.incorrectKey, option);
     }
+  }
+  
   
 }
