@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../servisi/api.services';
-import { CommonModule } from '@angular/common';
+import { CommonModule, KeyValue } from '@angular/common';
+import { find, map } from 'rxjs';
 
 @Component({
   selector: 'app-pitanja',
@@ -16,10 +17,11 @@ export class PitanjaComponent {
   prikaziOdgovor : boolean = false;
   trenutnoPitanje: number = 0;
   ucitano : Boolean = false;
-  pitanja: any ;
+  pitanja: any = [] ;
   tocan_odgovor: any =[];
   incorrectKey: boolean = false;
   correctKey: boolean = false;
+  
   
   constructor(private http: HttpClient, private api: ApiService){}
 
@@ -31,8 +33,14 @@ ngOnInit(): void{
   dohvatiPitanja(){
     this.api.dohvatiPitanja().subscribe(res =>{
     this.pitanja = res.data;
-      console.log(res.data);
+    console.log(res.data);
+    const newList = this.pitanja.sort(()=> Math.random()- 0.5);
+    console.log(newList);
+    return newList;
+      
     })
+    
+    
   }
 
   iducePitanje(){
@@ -46,7 +54,10 @@ ngOnInit(): void{
   pocniKviz(){
     this.ucitano = true;
   }
-
+  zero(){
+    return 0;
+  }
+  
   selectOption(option:any) {
     if(option == "tocan_odgovor"){
     this.correctKey = true;
