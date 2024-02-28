@@ -39,17 +39,24 @@ export class RegisterComponent {
 
 
   posaljiPodatke(){
-   this.authService.register(this.user.value).subscribe((msg)=>console.log(msg));
-    if(ErrorHandler){
-      this.toastr.error("Korisnik već postoji!")
-    }else{
-      this.toastr.success("Registracija uspješna!")
-      this.router.navigate(['/login']);
+   this.authService.register(this.user.value).subscribe((res)=>{
+   console.log(res);
+   if(res){
+     this.toastr.success("Registracija uspješna!")
+     this.router.navigate(['/login']);
+
+   }});
+   
+   
+   
+   
+   
     }
-    }
+}
+    
     
     
      
      
 
-}
+

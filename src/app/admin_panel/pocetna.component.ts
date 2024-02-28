@@ -5,6 +5,7 @@ import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angu
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
 import { AuthService } from '../../servisi/auth.service';
+import { authGuardGuard } from '../auth-guard.guard';
 
 
 
@@ -49,8 +50,7 @@ export class AdminComponent {
     private fb : FormBuilder,
     private toastr: ToastrService,
     private api : ApiService,
-    private authService : AuthService
-    
+
   ){}
 
   Router(){
@@ -94,7 +94,7 @@ export class AdminComponent {
   
 
   urediKorisnika(korisnik: any){
-    this.authService.updateData(this.korisnik,this.korisnik.id)
+    
     this.uredjujem = 0;
     for(let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == korisnik.id){
