@@ -42,17 +42,23 @@ export class LoginComponent{
             
         })             
     }
-   
+    
     posaljiPodatke(){
-       this.authService.login(this.user.value).subscribe(()=>{
-        console.log("User is logged in");
+       this.authService.login(this.user.value).subscribe((res)=>{
+        if(res){
+            this.toastr.success(`Dobro došli`);
+            this.router.navigate(['/admin-panel']);
+        }
+        }) 
+       
         
-        this.toastr.success("Prijava Uspješna!")
-        this.router.navigate(['/admin-panel']);
-       }
         
-       )};
     }
+        
+       
+
+}
+    
 
         
     

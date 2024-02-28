@@ -5,7 +5,7 @@ const funkcije = require('./funkcije');
 var korisnik = {
     korisnikLogin : function(req,res,next){
        
-        console.log("Početak funkcije")
+        console.log("Logiranje...")
         if(req.body.email && req.body.lozinka ){
         let query = 'SELECT * FROM korisnici WHERE email = ? AND lozinka = ?';
         let table = [req.body.email, req.body.lozinka];
@@ -13,19 +13,13 @@ var korisnik = {
         query = mysql.format(query,table);
         funkcije.mysql_query(query, function(podaci){
             
-            if(podaci.data.length===0){
+            if(podaci.data.length === 0){
                 
-                res.json({message: "Login neuspješan"})
+                return 0;
                 
             }else{
-                 jwt.sign({query},'privatekey',{expiresIn: '1h'},(err,token)=>{
-                    if(err){console.log(err)}
-                    res.send(token);
-                    
-                })
-
-            console.log(podaci);
-            res.json({ message: "Login uspješan", data:podaci})
+            
+            res.send(podaci)
             console.log("Query successfully executed");
         
             }
