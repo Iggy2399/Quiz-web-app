@@ -5,6 +5,7 @@ import { AdminComponent } from './admin_panel/pocetna.component';
 import { ApiCallComponent } from './api-call/api-call.component';
 import { PitanjaComponent } from './pitanja/pitanja.component';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
     {   
@@ -26,6 +27,10 @@ export const routes: Routes = [
     {
       path: 'registracija',
       component: RegisterComponent
+    },
+    {
+      path: 'dashboard',
+      component: DashboardComponent
     },
    
     {

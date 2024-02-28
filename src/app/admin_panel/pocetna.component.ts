@@ -4,8 +4,7 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
-import { AuthService } from '../../servisi/auth.service';
-import { authGuardGuard } from '../auth-guard.guard';
+
 
 
 
@@ -60,11 +59,6 @@ export class AdminComponent {
     this.dohvatiPodatke();  
     
   }
-  urediKorisnika1(){
-    
-
-  }
- 
   dohvatiPodatke(){
     this.api.getData().subscribe(res =>{
        this.korisnici = res.data;

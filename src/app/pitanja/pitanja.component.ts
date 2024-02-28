@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../servisi/api.services';
-import { CommonModule, KeyValue } from '@angular/common';
+import { CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-pitanja',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, RouterOutlet,
+    RouterLinkActive],
   templateUrl: './pitanja.component.html',
   styleUrl: './pitanja.component.css'
 })
