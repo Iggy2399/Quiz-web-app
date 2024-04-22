@@ -1,0 +1,56 @@
+[
+    {
+        "pitanjeId": 1,
+        "pitanje" : "Koja je brzina svijetlosti?",
+        "opcije":[
+            {
+                "odgovor": "330 metara po sekundi",
+                "tocno": false
+            },
+            {
+                "odgovor": "150 000 kilometara u sekundi",
+                "tocno"  : false
+            },
+            {
+                "odgovor": "300 000 kilometara u sekundi",
+                "tocno" : true
+            }
+        ]
+    },
+    {
+        "pitanjeId": 2,
+        "pitanje" : "Koja je oznaka za zlato u periodnom sustavu elemenata",
+        "opcije":[
+            {
+                "odgovor": "Ag",
+                "tocno": false
+            },
+            {
+                "odgovor": "He",
+                "tocno"  : false
+            },
+            {
+                "odgovor": "Au",
+                "tocno" : true
+            }
+        ]
+    },
+    {
+        "pitanjeId": 3,
+        "pitanje" : "Koja je mjerna jedinica za frekvenciju",
+        "opcije":[
+            {
+                "odgovor": "rad/s",
+                "tocno": false
+            },
+            {
+                "odgovor": "Herc",
+                "tocno"  : true
+            },
+            {
+                "odgovor": "Volt",
+                "tocno" : false
+            }
+        ]
+    }
+]
