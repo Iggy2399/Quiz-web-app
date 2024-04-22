@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ErrorHandler } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../servisi/auth.service';
 import { User } from '../models/User';
@@ -39,13 +39,24 @@ export class RegisterComponent {
 
 
   posaljiPodatke(){
-   this.authService.register(this.user.value).subscribe((msg)=>console.log(msg));
-      this.toastr.success("Registracija uspješna!")
-      this.router.navigate(['/login']);
+   this.authService.register(this.user.value).subscribe((res)=>{
+   console.log(res);
+   if(res){
+     this.toastr.success("Registracija uspješna!")
+     this.router.navigate(['/login']);
+
+   }});
+   
+   
+   
+   
+   
     }
+}
+    
     
     
      
      
 
-}
+

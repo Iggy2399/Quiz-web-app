@@ -9,7 +9,7 @@ var korisnikReg={
         funkcije.mysql_query(query1, function(podaci){
             console.log(podaci.data[0]);
             if(podaci.data.length !== 0){
-                res.json({message: "Korisnik već postoji!"})
+                return 0;
             }else{
                 let query = "INSERT INTO korisnici (ime_prezime, email, lozinka, uloga) VALUES (?,?,?,?)";
                 let uloga = "igrac";

@@ -4,7 +4,7 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
-import { AuthService } from '../../servisi/auth.service';
+
 
 
 
@@ -42,14 +42,14 @@ export class AdminComponent {
   image : boolean = false;
   korisnici : any;
   brojKorisnika: number = 0;
+  podaci : any;
 
   constructor(
     public _router: Router,
     private fb : FormBuilder,
     private toastr: ToastrService,
     private api : ApiService,
-    private authService : AuthService
-    
+
   ){}
 
   Router(){
@@ -57,8 +57,8 @@ export class AdminComponent {
   }
   ngOnInit(){
     this.dohvatiPodatke();  
+    
   }
-  
   dohvatiPodatke(){
     this.api.getData().subscribe(res =>{
        this.korisnici = res.data;
@@ -85,8 +85,10 @@ export class AdminComponent {
       }
     }
   }
+  
 
   urediKorisnika(korisnik: any){
+    
     this.uredjujem = 0;
     for(let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == korisnik.id){

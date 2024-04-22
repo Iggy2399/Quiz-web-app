@@ -1,11 +1,13 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms";
-import { ReactiveFormsModule, FormBuilder} from "@angular/forms";
+import { ReactiveFormsModule} from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from "../../servisi/auth.service";
 import { ApiService } from "../../servisi/api.services";
+
+
 
 
 
@@ -40,24 +42,39 @@ export class LoginComponent{
             
         })             
     }
-   
+    
     posaljiPodatke(){
-       this.authService.login(this.user.value).subscribe();
-       this.api.loginPodaci().subscribe(res =>{
-        console.log(res);
-        
-        if(this.state){
-            this.toastr.success("Logiranje uspješno")
+       this.authService.login(this.user.value).subscribe((res)=>{
+        if(res){
+            this.toastr.success(`Dobro došli`);
             this.router.navigate(['/admin-panel']);
+        }
+        }) 
+       
         
-    }})
+        
+    }
+        
+       
+
+}
+    
+
+        
+    
+   
+       
+       
+    
+
+
         
       
         
     
        
             
-}
 
-}  
+
+
 

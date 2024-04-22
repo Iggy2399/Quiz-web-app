@@ -12,7 +12,7 @@ var uredivanjeKorisnika = {
         query = mysql.format(query,table);
         funkcije.mysql_query(query, function(podaci){
             console.log(podaci);
-            
+        res.send(podaci);
             
        })
        
