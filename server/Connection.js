@@ -8,7 +8,7 @@ const mysql = require('mysql');
             host:'localhost',
             user: 'root',
             password: null,
-            database: 'baza'
+            database: 'kviz'
         });
         
         
