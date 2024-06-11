@@ -29,6 +29,10 @@ export class LoginComponent{
     isSubmitted : boolean = false;
     returnUrl: any;
     state : any;
+    email: string = "";
+    password : string = "";
+    errorMessage: any;
+   
     
     constructor(
         public router: Router,
@@ -38,17 +42,27 @@ export class LoginComponent{
     ){
         this.user = new FormGroup({
             email : new FormControl('', [Validators.email, Validators.required]),
-            lozinka : new FormControl('', [Validators.minLength(5), Validators.maxLength(12), Validators.required])
+            lozinka : new FormControl('', [Validators.minLength(5), Validators.maxLength(50), Validators.required])
             
         })             
     }
     
     posaljiPodatke(){
-       this.authService.login(this.user.value).subscribe((res)=>{
-        if(res){
-            this.toastr.success(`Dobro došli`);
+       this.authService.login(this.email, this.password).subscribe((res)=>{
+        if(res.user.uloga === "admin"){
+            console.log(res);
+            this.toastr.success(`Dobro došli ${res.user.ime_prezime}`);
             this.router.navigate(['/admin-panel']);
+
+        }else if(res.user.uloga === "igrac"){
+                this.toastr.success(`Dobro došli ${res.user.ime_prezime}`);
+                this.router.navigate(['/pitanja']);
+
+        }else {
+            console.log("neispravni podaci");
         }
+
+        
         }) 
        
         

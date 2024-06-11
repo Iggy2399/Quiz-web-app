@@ -25,10 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <h5 class="nav-link active "id="dodaj"(click)="prikaziFormu()">Dodaj Korisnika</h5>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" id="odjava" [routerLink]="['/prijava']" routerLinkActive="router-link-active">Odjava</a>
+                  <a class="nav-link active" id="odjava" [routerLink]="['/prijava']" (click)="logout()" routerLinkActive="router-link-active">Odjava</a>
                 </li>
               </ul>
               
@@ -36,7 +33,7 @@
           </div>
         </nav><hr>
         <!-- Forma -->
-        <div *ngIf="dodajem == 1 || uredjujem == 1" class="unos">
+        <div *ngIf=" uredjujem == 1" class="unos">
           <form class="form"[formGroup]="korisnik" (ngSubmit)="upravljanjeKorisnikom(korisnik)">
             <input type="text" class="form-control" id="ime" placeholder="Ime i prezime" formControlName="ime">      
             <input type="text" class="form-control" id="god_rodenja" placeholder="Godina rođenja" formControlName="god_rodenja">             
@@ -53,15 +50,11 @@
                 Prenesite datoteku
               </label>
             </div>
-            <div *ngIf="upload == 1">
-            <input id="file-input" type="file" accept="image/*" (change)="UploadPriprema($event)" multiple>
-          </div>
           <div *ngIf="url == 1">
             <input type="text" class="form-control" id="slika" placeholder="Url slike" formControlName="slika">
           </div>
             <div class="col col-lg-2 col-md-2">
               <div id="input_container">
-                <button *ngIf="dodajem == 1" type="submit" class="btn btn-success btn-md" [disabled]="!korisnik.valid">Dodaj</button>
                 <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md">Uredi </button>
               </div>
             </div>

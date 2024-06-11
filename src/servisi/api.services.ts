@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { Observable, } from 'rxjs';
+
 
 
 @Injectable({
@@ -9,6 +11,7 @@ import { Injectable } from '@angular/core';
 
 
 export class ApiService{
+  private apiUrl = 'http://localhost:3000/api/login';
   
     constructor(
         private _http: HttpClient,
@@ -17,27 +20,25 @@ export class ApiService{
       ){
         
       }
-    getData(){
-      return this._http.get('http://localhost:3000/api/prikaz_korisnika')
-              .pipe(map((res:any)=>res));
+    getData(): Observable<any>{
+      return this._http.get<any>('http://localhost:3000/api/prikaz_korisnika');
+              
     }
     dohvatiPodatke(){
         return this._http.get('https://jsonplaceholder.typicode.com/photos')
               .pipe(map((res: any) => res));
     }
-    loginPodaci(){
-      return this._http.get('http://localhost:3000/api/login')
-              .pipe(map((res:any)=> res));
-    }
+    
     dohvatiPitanja(){
       return this._http.get('http://localhost:3000/api/pitanja')
               .pipe(map((res:any)=>res));
     }
-  
-   
-   
+
+    loginPodaci(){
+      return this._http.get('http://localhost:3000/api/login')
+              .pipe(map((res:any)=> res));
     
    
     
-    
+}
 }

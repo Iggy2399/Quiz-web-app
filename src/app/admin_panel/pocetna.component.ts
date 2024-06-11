@@ -4,6 +4,8 @@ import { CommonModule,} from '@angular/common';
 import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
+import { AuthService } from '../../servisi/auth.service';
+import { Observable, asyncScheduler, interval, switchMap } from 'rxjs';
 
 
 
@@ -34,21 +36,21 @@ export class AdminComponent {
 
 
   datoteka : any;
-  tmpSlika: string = "download.png";
   uredjujem: number = 0;
-  dodajem : number = 0;
   upload : number = 0;
   url : number = 0;
   image : boolean = false;
   korisnici : any;
   brojKorisnika: number = 0;
   podaci : any;
+  dataRefresher:any
 
   constructor(
     public _router: Router,
     private fb : FormBuilder,
     private toastr: ToastrService,
     private api : ApiService,
+    private auth: AuthService
 
   ){}
 
@@ -56,20 +58,26 @@ export class AdminComponent {
     this._router.navigate(['/api-call']);
   }
   ngOnInit(){
-    this.dohvatiPodatke();  
+    this.dohvatiPodatke();
+    this.refreshData();  
     
   }
+  refreshData(){
+    this.dataRefresher = setInterval(()=>{
+      this.dohvatiPodatke();
+      2000;
+    })
+  }
   dohvatiPodatke(){
-    this.api.getData().subscribe(res =>{
+     this.api.getData().subscribe(res =>{
        this.korisnici = res.data;
        this.brojKorisnika = this.korisnici.length
-      console.log(this.korisnici.length)
+      
     })
 
   }
   urediKorisnikaTablica(korisnik: any, index:any){
     console.log(korisnik);
-    this.dodajem = 0;
     this.uredjujem = 1;
     for(let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == index){
@@ -104,7 +112,6 @@ export class AdminComponent {
   }
 
   upravljanjeKorisnikom(korisnik: any){
-    if(this.dodajem){
       if (this.upload == 1){
         this.korisnici.push({
           'id': this.korisnici.value.id,
@@ -112,6 +119,7 @@ export class AdminComponent {
           'email': this.korisnici.value.email,
           
         }
+      
       );
           this.toastr.success("Korisnik uspješno dodan!")
       
@@ -127,7 +135,7 @@ export class AdminComponent {
         
       }
       /*this.korisnici.push(this.korisnik.value); */
-    } 
+     
     if(this.uredjujem){
       for(let i = 0; i < this.korisnici.length; i++){
         if(this.korisnici[i].id == korisnik.value.id){
@@ -147,21 +155,19 @@ export class AdminComponent {
   obrisiKorisnika(korisnik : any){
     for (let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == korisnik.id){
-
+        this.auth['deleteUser'](this.korisnik.id,i).subscribe((res: any)=>
+          console.log(res)
+        );
         this.korisnici.splice(i,1)
-        this.toastr.success("Korisnik uspješno obrisan!")
+        this.toastr.success("Korisnik uspješno obrisan!");
       }
     }
   }
 
-  UploadPriprema($event: any,){
-    this.datoteka = $event.target.files;
-    this.tmpSlika =  window.URL.createObjectURL($event.target.files[0]) 
-  }
-
+ 
   prikaziFormu(){
     this.uredjujem = 0;
-    this.dodajem = 1;
+    
   }
 
   Upload(){
@@ -171,6 +177,9 @@ export class AdminComponent {
   UrlChoice(){
     this.upload = 0;
     this.url = 1;
+  }
+  logout(){
+    this.auth.logout();
   }
  
 

@@ -1,38 +1,15 @@
-<!-- <div class="container">
-      <h3 style="margin-left: 40%;">Login</h3> <hr>
-      <div class="row">
-        <div class="col-xs-12">
-        <form action="" method="post">
-          <div style="margin-left: 40%;">
-          <label for="email">E-mail</label> <br>
-          <input type="email" name="email" id="email" [(ngModel)]="user.email"><br>
-          <label for="lozinka">Lozinka</label><br>
-          <input type="password" name="lozinka" id="lozinka" minlength="6" maxlength="12" required [(ngModel)]="user.lozinka"><br>
-        </div>
-      </form>
-     <button class="btn btn-success pull-right"style="margin-left: 40%; margin-top: 5px;" (click)="prijava()">Prijavi se</button>
+<div class="login-form">
+  <h2>Login</h2>
+  <form (ngSubmit)="posaljiPodatke()" #loginForm="ngForm">
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" [(ngModel)]="email" name="email" type="email" required>
     </div>
-</div>-->
-
-<section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 2rem;">
-          <div class="card-body p-5 text-center">
-            <h3 class="mb-5">Prijava</h3> 
-            <form [formGroup]="user" (ngSubmit)="posaljiPodatke()">
-              <label class="form-label" for="typeEmailX-2"></label>
-              <input type="text" formControlName="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="E-mail" required>
-              <label class="form-label" for="typePasswordX-2"></label>
-              <input id="lozinka" type="password" formControlName="lozinka" placeholder="Lozinka" id="typePasswordX-2" class="form-control form-control-lg">
-              <p>Unesite podatke</p>
-              <button type="submit" [disabled]="!user.valid" class="btn btn-success pull-right"style="margin-top: 5px;">Prijavi se</button>
-            </form>
-            <button class="btn btn-success pull-right"style="margin-top: 5px;" [routerLink]="['/registracija']" routerLinkActive="router-link-active" style="margin-left: 5px; margin-top: 5px;">Registriraj se</button>
-          </div>
-        </div>
-      </div>
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" [(ngModel)]="password" name="password" type="password" required>
     </div>
-  </div>
-</section>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+</div>
