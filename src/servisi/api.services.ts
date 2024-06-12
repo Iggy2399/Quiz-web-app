@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, } from 'rxjs';
 
@@ -11,12 +11,10 @@ import { Observable, } from 'rxjs';
 
 
 export class ApiService{
-  private apiUrl = 'http://localhost:3000/api/login';
+  private apiUrl = 'http://localhost:3000/api/';
   
     constructor(
         private _http: HttpClient,
-        
-        
       ){
         
       }
@@ -33,12 +31,17 @@ export class ApiService{
       return this._http.get('http://localhost:3000/api/pitanja')
               .pipe(map((res:any)=>res));
     }
+    updatePoints(userId: number, points: number): Observable<any> {
+      return this._http.post<any>(`${this.apiUrl}/update-points`, { userId, points });
+    }
 
     loginPodaci(){
       return this._http.get('http://localhost:3000/api/login')
               .pipe(map((res:any)=> res));
-    
-   
-    
 }
+    deleteKorisnik(id: number): Observable<any> {
+      return this._http.post<any>(`${this.apiUrl}obrisi_korisnika/`,{id});
+}
+
+  
 }
