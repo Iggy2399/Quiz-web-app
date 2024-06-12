@@ -33,29 +33,16 @@
           </div>
         </nav><hr>
         <!-- Forma -->
-        <div *ngIf=" uredjujem == 1" class="unos">
-          <form class="form"[formGroup]="korisnik" (ngSubmit)="upravljanjeKorisnikom(korisnik)">
+        <div class="unos">
+          <form class="form"[formGroup]="korisnik" >
             <input type="text" class="form-control" id="ime" placeholder="Ime i prezime" formControlName="ime">      
             <input type="text" class="form-control" id="god_rodenja" placeholder="Godina rođenja" formControlName="god_rodenja">             
             <input type="text" class="form-control" id="E-mail" placeholder="E-mail" formControlName="email">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="UrlChoice()">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Unesite url
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked (click)="Upload()">
-              <label class="form-check-label" for="flexRadioDefault2">
-                Prenesite datoteku
-              </label>
-            </div>
-          <div *ngIf="url == 1">
-            <input type="text" class="form-control" id="slika" placeholder="Url slike" formControlName="slika">
-          </div>
+          
+          
             <div class="col col-lg-2 col-md-2">
               <div id="input_container">
-                <button *ngIf="uredjujem == 1" type="submit" class="btn btn-success btn-md">Uredi </button>
+                <button type="submit" class="btn btn-success btn-md">Uredi</button>
               </div>
             </div>
           </form>
@@ -68,7 +55,7 @@
       <div class="panel-body">
         <form>
           <div>
-            <table class="table table-hover responsive">
+            <table class="table responsive">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -87,8 +74,8 @@
                   <td>{{korisnik.uloga}}</td>
                   
                   <td class="tablica text-center">
-                    <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik, korisnik.id)">Uredi</button>
-                    <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(korisnik)">Obriši</button>
+                    <button class="btn btn-info btn-sm">Uredi</button>
+                    <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(korisnik.id)">Obriši</button>
                   </td>
                 </tr>
               </tbody>

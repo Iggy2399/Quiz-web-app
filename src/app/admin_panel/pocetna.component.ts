@@ -35,11 +35,8 @@ export class AdminComponent {
   })
 
 
-  datoteka : any;
-  uredjujem: number = 0;
-  upload : number = 0;
-  url : number = 0;
-  image : boolean = false;
+  
+  
   korisnici : any;
   brojKorisnika: number = 0;
   podaci : any;
@@ -78,7 +75,7 @@ export class AdminComponent {
   }
   urediKorisnikaTablica(korisnik: any, index:any){
     console.log(korisnik);
-    this.uredjujem = 1;
+
     for(let i = 0; i < this.korisnici.length; i++){
       if(this.korisnici[i].id == index){
         console.log(this.korisnici[i]);
@@ -89,95 +86,26 @@ export class AdminComponent {
           'email': korisnik.email,
           'slika': korisnik.slika
         });
-        
       }
     }
   }
   
-
-  urediKorisnika(korisnik: any){
-    
-    this.uredjujem = 0;
-    for(let i = 0; i < this.korisnici.length; i++){
-      if(this.korisnici[i].id == korisnik.id){
-        this.korisnici[i] = {
-          'id': this.korisnici.id,
-          'ime': this.korisnici.ime_prezime,
-          'email': this.korisnici.email,
-          
+  obrisiKorisnika(id: number): void {
+    console.log(id);
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.api.deleteKorisnik(id).subscribe(
+        res => {
+          console.log("User deleted:", res);
+         
+        },
+        err => {
+          console.error("Failed to delete user:", err);
         }
-        this.korisnik = {};
-      }
-    }
-  }
-
-  upravljanjeKorisnikom(korisnik: any){
-      if (this.upload == 1){
-        this.korisnici.push({
-          'id': this.korisnici.value.id,
-          'ime': this.korisnici.value.ime,
-          'email': this.korisnici.value.email,
-          
-        }
-      
       );
-          this.toastr.success("Korisnik uspješno dodan!")
-      
-      }
-      else{
-        this.korisnici.push({
-          'id': this.korisnici.value.id,
-          'ime': this.korisnici.value.ime,
-          'email': this.korisnici.value.email,
-          
-        })
-        this.toastr.success("Korisnik uspješno dodan!")
-        
-      }
-      /*this.korisnici.push(this.korisnik.value); */
-     
-    if(this.uredjujem){
-      for(let i = 0; i < this.korisnici.length; i++){
-        if(this.korisnici[i].id == korisnik.value.id){
-          this.korisnici[i] = {
-            'id': korisnik.value.id,
-            'ime': korisnik.value.ime,
-            'god_rodenja': korisnik.value.god_rodenja,
-            'email': korisnik.value.email,
-            'slika': korisnik.value.slika
-          }
-        }
-        this.toastr.success("Korisnik uspješno uređen!")
-      }
     }
   }
+  
 
-  obrisiKorisnika(korisnik : any){
-    for (let i = 0; i < this.korisnici.length; i++){
-      if(this.korisnici[i].id == korisnik.id){
-        this.auth['deleteUser'](this.korisnik.id,i).subscribe((res: any)=>
-          console.log(res)
-        );
-        this.korisnici.splice(i,1)
-        this.toastr.success("Korisnik uspješno obrisan!");
-      }
-    }
-  }
-
- 
-  prikaziFormu(){
-    this.uredjujem = 0;
-    
-  }
-
-  Upload(){
-    this.upload = 1;
-    this.url = 0;
-  }
-  UrlChoice(){
-    this.upload = 0;
-    this.url = 1;
-  }
   logout(){
     this.auth.logout();
   }
