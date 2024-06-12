@@ -5,7 +5,7 @@ import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angu
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
 import { AuthService } from '../../servisi/auth.service';
-import { Observable, asyncScheduler, interval, switchMap } from 'rxjs';
+
 
 
 
@@ -59,7 +59,7 @@ export class AdminComponent {
   }
   ngOnInit(){
     this.dohvatiPodatke();
-    this.refreshData();  
+   // this.refreshData();  
     
   }
   refreshData(){

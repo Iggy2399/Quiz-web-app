@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const funkcije = require('./funkcije');
 
-// Replace with your actual secret key and use environment variables in production
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
 
 var korisnik = {
