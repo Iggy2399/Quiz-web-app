@@ -37,11 +37,11 @@ export class AuthService {
               saveToken(token: string): void {
                 localStorage.setItem('jwtToken', token);
               }
-            
+              
               getToken(): string | null {
                 return localStorage.getItem('jwtToken');
               }
-            
+             
               logout(): void {
                 localStorage.removeItem('jwtToken');
               }

@@ -1,15 +1,28 @@
-<div class="login-form">
-  <h2>Login</h2>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 2rem;">
+          <div class="card-body p-5 text-center"><br>
+            <h3 class="mb-5" style="color: aliceblue; margin-top: 5px; font-size: xx-large;">Prijavi se</h3>
+
   <form (ngSubmit)="posaljiPodatke()" #loginForm="ngForm">
-    <div>
-      <label for="email">Email:</label>
-      <input id="email" [(ngModel)]="email" name="email" type="email" required>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input id="password" [(ngModel)]="password" name="password" type="password" required>
-    </div>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <label class="form-label" for="email" placeholder="E-mail"></label>
+      <input id="typeEmailX-2" [(ngModel)]="email" name="email" type="email" required class="form-control form-control-lg" placeholder="Email" >
+    
+      <label class="form-label" for="password" class="form-label" placeholder="Lozinka" id="typePasswordX-2"></label>
+      <input id="password" [(ngModel)]="password" name="password" type="password" required placeholder="Lozinka" class="form-control form-control-lg" minlength="5">
+
+      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success pull-right"style="margin-top: 10px; width: 100%;" >PRIJAVA</button><br>
+      
+      <button class="btn btn-success pull-right"[routerLink]="['/registracija']" style="margin-top: 30px;"  routerLinkActive="router-link-active">Registriraj se</button>
+      <p style="margin-top: 5px; color: aliceblue;">Nemate račun?</p>
   </form>
   <div *ngIf="errorMessage">{{ errorMessage }}</div>
 </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  

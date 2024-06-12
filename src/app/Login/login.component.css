@@ -2,6 +2,28 @@ input:focus::placeholder{
     color: transparent;
 }
 .vh-100{
-    background-color:#B0C4DE ;
-    
+    background-image: url(backgrnd.jpg);
+    background-size: auto ;
+}
+.card{
+    background-color: rgba(196, 199, 201, 0.158);
+    border-radius: 5px !important;
+    border-style: solid ;
+    border-color: rgba(0, 0, 0, 0.377);
+}
+.btn:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+.btn{
+    background-color: rgba(0, 0, 0, 0.842);
+    transition: 0.3s;
+}
+
+#typeEmailX-2{
+    background-color: rgba(255, 255, 255, 0.678);
+}
+#password{
+    background-color: rgba(255, 255, 255, 0.678);
+
 }

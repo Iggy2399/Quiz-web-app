@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './auth-guard.guard';
 
 import { LoginComponent } from './Login/login.component';
 import { AdminComponent } from './admin_panel/pocetna.component';
@@ -14,7 +15,8 @@ export const routes: Routes = [
     },
     {
       path: 'admin-panel',
-      component: AdminComponent
+      component: AdminComponent,
+      canActivate: [AuthGuard]
     },
     {
       path : 'api-call',
@@ -22,7 +24,8 @@ export const routes: Routes = [
     },
     {
       path: 'pitanja',
-      component: PitanjaComponent
+      component: PitanjaComponent,
+      canActivate:[AuthGuard],
     },
     {
       path: 'registracija',
@@ -30,7 +33,8 @@ export const routes: Routes = [
     },
     {
       path: 'dashboard',
-      component: DashboardComponent
+      component: DashboardComponent,
+      canActivate:[AuthGuard],
     },
    
     {
