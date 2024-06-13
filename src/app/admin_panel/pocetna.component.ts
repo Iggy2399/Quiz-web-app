@@ -69,6 +69,7 @@ export class AdminComponent {
      this.api.getData().subscribe(res =>{
        this.korisnici = res.data;
        this.brojKorisnika = this.korisnici.length
+       console.log(this.korisnici);
       
     })
 

@@ -11,7 +11,8 @@ var prikazKorisnika ={
                 res.json({message: "Baza podataka je prazna"})
             }else{
                 console.log(podaci);
-                res.send(podaci)
+                
+                res.json(podaci)
             }
        })
     }

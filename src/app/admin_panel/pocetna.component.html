@@ -2,7 +2,7 @@
 <!-- The sidebar -->
 <div class="sidebar">
   <a class="active" [routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Home</a>
-  <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
+  <a [routerLink]="['/login']" routerLinkActive="router-link-active"></a>
   <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
   <a [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Kviz</a>
   <a [routerLink]="['/registracija']" routerLinkActive="router-link-active">Registracija</a>
@@ -36,7 +36,7 @@
         <div class="unos">
           <form class="form"[formGroup]="korisnik" >
             <input type="text" class="form-control" id="ime" placeholder="Ime i prezime" formControlName="ime">      
-            <input type="text" class="form-control" id="god_rodenja" placeholder="Godina rođenja" formControlName="god_rodenja">             
+                        
             <input type="text" class="form-control" id="E-mail" placeholder="E-mail" formControlName="email">
           
           
