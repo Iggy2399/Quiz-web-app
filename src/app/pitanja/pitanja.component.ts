@@ -31,17 +31,34 @@ ngOnInit(): void{
   this.dohvatiPitanja();
   
 }
-
-  dohvatiPitanja(){
-    this.api.dohvatiPitanja().subscribe(res =>{
-    this.pitanja = res.data;
-    const newList = this.pitanja.sort(()=> Math.random()- 0.5);
-    console.log(newList);
-    return newList;
-      
-    }) 
+shuffleArray(array: any[]): any[] {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
+  return array;
+}
 
+
+
+dohvatiPitanja(): void {
+  this.api.dohvatiPitanja().subscribe(res => {
+    this.pitanja = res.data.map((question: any) => {
+      const answers = [
+        { key: 'tocan_odgovor', value: question.tocan_odgovor },
+        { key: 'odgovor2', value: question.odgovor2 },
+        { key: 'odgovor3', value: question.odgovor3 }
+      ];
+      const shuffledAnswers = this.shuffleArray(answers);
+      return {
+        naziv: question.naziv,
+        odgovori: shuffledAnswers
+      };
+    });
+    this.pitanja = this.shuffleArray(this.pitanja); // Shuffle the questions
+    this.ucitano = true; // Set ucitano to true after loading
+  });
+}
   iducePitanje(){
     this.answer = false;
     this.correctKey = false;

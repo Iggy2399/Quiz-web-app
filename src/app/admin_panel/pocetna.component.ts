@@ -36,7 +36,6 @@ export class AdminComponent {
 
 
   
-  
   korisnici : any;
   brojKorisnika: number = 0;
   podaci : any;
@@ -56,7 +55,7 @@ export class AdminComponent {
   }
   ngOnInit(){
     this.dohvatiPodatke();
-   // this.refreshData();  
+    //this.refreshData();  
     
   }
   refreshData(){
