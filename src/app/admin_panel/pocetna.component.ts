@@ -6,11 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
 import { AuthService } from '../../servisi/auth.service';
 
-
-
-
-
-
 @Component({
   selector: 'app-pocetna',
   standalone: true,
@@ -92,11 +87,11 @@ export class AdminComponent {
   
   obrisiKorisnika(id: number): void {
     console.log(id);
-    if (confirm('Are you sure you want to delete this user?')) {
+    
+    if (confirm(`Želite li obrisati korisnika?` )) {
       this.api.deleteKorisnik(id).subscribe(
         res => {
           console.log("User deleted:", res);
-         
         },
         err => {
           console.error("Failed to delete user:", err);
@@ -104,8 +99,6 @@ export class AdminComponent {
       );
     }
   }
-  
-
   logout(){
     this.auth.logout();
   }

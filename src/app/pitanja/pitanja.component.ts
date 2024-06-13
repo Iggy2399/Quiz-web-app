@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../servisi/api.services';
 import { CommonModule} from '@angular/common';
+import { AuthService } from '../../servisi/auth.service';
 
 @Component({
   selector: 'app-pitanja',
@@ -23,12 +24,17 @@ export class PitanjaComponent {
   correctKey: boolean = false;
   counter: number = 0;
   answer: boolean = false;
+  userInfo: any;
   
   
-  constructor(private http: HttpClient, private api: ApiService){}
+  constructor(private http: HttpClient, private api: ApiService,
+    private authService: AuthService
+  ){}
 
 ngOnInit(): void{
   this.dohvatiPitanja();
+  this.userInfo = this.authService.getUserInfo()
+  console.log(this.userInfo);
   
 }
 shuffleArray(array: any[]): any[] {
@@ -55,8 +61,8 @@ dohvatiPitanja(): void {
         odgovori: shuffledAnswers
       };
     });
-    this.pitanja = this.shuffleArray(this.pitanja); // Shuffle the questions
-    this.ucitano = true; // Set ucitano to true after loading
+    this.pitanja = this.shuffleArray(this.pitanja); 
+    this.ucitano = true; 
   });
 }
   iducePitanje(){
@@ -86,6 +92,17 @@ dohvatiPitanja(): void {
       this.correctKey = true;
       console.log(this.incorrectKey, option);
     }
+  }
+  restartQuiz() {
+    this.trenutnoPitanje = 0;
+    this.answer = false;
+    this.correctKey = false;
+    this.incorrectKey = false;
+    this.counter = 0;
+    this.dohvatiPitanja();
+  }
+  odjava(){
+    this.authService.logout();
   }
   
   

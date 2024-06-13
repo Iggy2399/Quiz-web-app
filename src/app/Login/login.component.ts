@@ -32,6 +32,7 @@ export class LoginComponent{
     email: string = "";
     password : string = "";
     errorMessage: any;
+    tokenExists:boolean = false;
    
     
     constructor(
@@ -45,6 +46,12 @@ export class LoginComponent{
             lozinka : new FormControl('', [Validators.minLength(5), Validators.maxLength(50), Validators.required])
             
         })             
+    }
+    ngOnInit(): void{
+        this.tokenExists = this.authService.hasToken();
+        if(this.tokenExists){
+            this.router.navigate(['/pitanja']);
+        }
     }
     
     posaljiPodatke(){

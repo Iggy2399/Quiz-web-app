@@ -4,6 +4,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { User } from '../app/models/User';
 import { Observable, tap } from 'rxjs';
 import { first, catchError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,8 @@ export class AuthService {
     headers : new HttpHeaders({"Content-Type":"application/json"}),
   }
   constructor(private http : HttpClient,
-              private errorHandlerService : ErrorHandlerService) { }
+              private errorHandlerService : ErrorHandlerService,
+             ) { }
 
               private loginUrl = 'http://localhost:3000/api/login'; // Your login API URL
 
@@ -27,8 +29,11 @@ export class AuthService {
                 const body = { email, lozinka };
                 return this.http.post<any>(this.loginUrl, body).pipe(
                   tap(response => {
+                    localStorage.setItem('userInfo',
+                    JSON.stringify(response.user));
                     if (response.token) {
                       this.saveToken(response.token);
+                      
                     }
                   })
                 );
@@ -36,6 +41,7 @@ export class AuthService {
             
               saveToken(token: string): void {
                 localStorage.setItem('jwtToken', token);
+                
               }
               
               getToken(): string | null {
@@ -44,7 +50,20 @@ export class AuthService {
              
               logout(): void {
                 localStorage.removeItem('jwtToken');
+                localStorage.removeItem('userInfo');
               }
+              hasToken():boolean{
+                return !!this.getToken();
+              }
+              
+              getUserInfo() {
+                const userData = localStorage.getItem('userInfo');
+                return userData ? JSON.parse(userData) : null;
+              }
+              isLoggedIn() {
+                return !!localStorage.getItem('jwtToken');
+              }
+              
             
   
   register(user:Omit<User,"id, uloga">):Observable<User>{
