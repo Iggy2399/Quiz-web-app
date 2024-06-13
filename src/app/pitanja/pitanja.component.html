@@ -3,7 +3,7 @@
     <a [routerLink]="['/profil']" routerLinkActive="router-link-active">{{userInfo.ime_prezime}}</a>
     <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
     <a [routerLink]="['/scoreboard']" routerLinkActive="router-link-active">Scoreboard</a>
-    <a [routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Admin panel</a>
+    <a *ngIf=""[routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Admin panel</a>
     <a [routerLink]="['']" routerLinkActive="router-link-active" (click)="restartQuiz()">Igraj ponovno</a>
     <a [routerLink]="['']" routerLinkActive="router-link-active" (click)="odjava()">Odjava</a>
 
