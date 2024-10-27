@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './auth-guard.guard';
 
 import { LoginComponent } from './Login/login.component';
 import { AdminComponent } from './admin_panel/pocetna.component';
 import { ApiCallComponent } from './api-call/api-call.component';
 import { PitanjaComponent } from './pitanja/pitanja.component';
 import { RegisterComponent } from './register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 
 export const routes: Routes = [
     {   
@@ -14,7 +15,8 @@ export const routes: Routes = [
     },
     {
       path: 'admin-panel',
-      component: AdminComponent
+      component: AdminComponent,
+      canActivate: [AuthGuard]
     },
     {
       path : 'api-call',
@@ -22,15 +24,17 @@ export const routes: Routes = [
     },
     {
       path: 'pitanja',
-      component: PitanjaComponent
+      component: PitanjaComponent,
+      canActivate:[AuthGuard],
     },
     {
       path: 'registracija',
       component: RegisterComponent
     },
     {
-      path: 'dashboard',
-      component: DashboardComponent
+      path: 'scoreboard',
+      component: ScoreboardComponent,
+      canActivate:[AuthGuard],
     },
    
     {

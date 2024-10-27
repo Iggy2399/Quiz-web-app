@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../servisi/api.services';
 import { CommonModule} from '@angular/common';
+import { AuthService } from '../../servisi/auth.service';
 
 @Component({
   selector: 'app-pitanja',
@@ -23,25 +24,47 @@ export class PitanjaComponent {
   correctKey: boolean = false;
   counter: number = 0;
   answer: boolean = false;
+  userInfo: any;
   
   
-  constructor(private http: HttpClient, private api: ApiService){}
+  constructor(private http: HttpClient, private api: ApiService,
+    private authService: AuthService
+  ){}
 
 ngOnInit(): void{
   this.dohvatiPitanja();
+  this.userInfo = this.authService.getUserInfo()
+  console.log(this.userInfo);
   
 }
-
-  dohvatiPitanja(){
-    this.api.dohvatiPitanja().subscribe(res =>{
-    this.pitanja = res.data;
-    const newList = this.pitanja.sort(()=> Math.random()- 0.5);
-    console.log(newList);
-    return newList;
-      
-    }) 
+shuffleArray(array: any[]): any[] {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
+  return array;
+}
 
+
+
+dohvatiPitanja(): void {
+  this.api.dohvatiPitanja().subscribe(res => {
+    this.pitanja = res.data.map((question: any) => {
+      const answers = [
+        { key: 'tocan_odgovor', value: question.tocan_odgovor },
+        { key: 'odgovor2', value: question.odgovor2 },
+        { key: 'odgovor3', value: question.odgovor3 }
+      ];
+      const shuffledAnswers = this.shuffleArray(answers);
+      return {
+        naziv: question.naziv,
+        odgovori: shuffledAnswers
+      };
+    });
+    this.pitanja = this.shuffleArray(this.pitanja); 
+    this.ucitano = true; 
+  });
+}
   iducePitanje(){
     this.answer = false;
     this.correctKey = false;
@@ -69,6 +92,17 @@ ngOnInit(): void{
       this.correctKey = true;
       console.log(this.incorrectKey, option);
     }
+  }
+  restartQuiz() {
+    this.trenutnoPitanje = 0;
+    this.answer = false;
+    this.correctKey = false;
+    this.incorrectKey = false;
+    this.counter = 0;
+    this.dohvatiPitanja();
+  }
+  odjava(){
+    this.authService.logout();
   }
   
   

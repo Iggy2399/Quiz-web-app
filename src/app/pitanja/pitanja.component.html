@@ -1,40 +1,33 @@
 <div class="sidebar">
     <a class="active" [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Kviz</a>
+    <a [routerLink]="['/profil']" routerLinkActive="router-link-active">{{userInfo.ime_prezime}}</a>
     <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
-    <a [routerLink]="['/profil']" routerLinkActive="router-link-active">Profil</a>
-    <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Dashboard</a>
-    <a [routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Admin panel</a>
-   
+    <a [routerLink]="['/scoreboard']" routerLinkActive="router-link-active">Scoreboard</a>
+    <a *ngIf=""[routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Admin panel</a>
+    <a [routerLink]="['']" routerLinkActive="router-link-active" (click)="restartQuiz()">Igraj ponovno</a>
+    <a [routerLink]="['']" routerLinkActive="router-link-active" (click)="odjava()">Odjava</a>
+
+    
   </div>
   
-    
-<div class="vh-100">
+  <div class="vh-100">
     <div class="container py-5 h-100">
-            <button id="zapocni" [hidden]="ucitano" (click)="pocniKviz()">Započni kviz</button>
-        <div class="app" *ngIf="ucitano">
-            <h3>{{trenutnoPitanje + 1}}. {{pitanja[trenutnoPitanje].naziv}}</h3>
-            <div class="option" *ngFor="let option of pitanja[trenutnoPitanje] | keyvalue  "[ngClass]="'correct'">
-                <div *ngIf="option.key == 'tocan_odgovor' || option.key == 'odgovor2' || option.key =='odgovor3'">
-                    
-                    
-            <button  class="btn" (click)="selectOption(option.key)"  [ngClass]="{'correct' : correctKey && option.key =='tocan_odgovor', 
-            'incorrect': incorrectKey && option.key !='tocan_odgovor'}" [disabled]="correctKey">{{option.value}}</button>
-                    
-            </div>
+      <button id="zapocni" [hidden]="ucitano" (click)="pocniKviz()">Započni kviz</button>
+      <div class="app" *ngIf="ucitano">
+        <h3>{{trenutnoPitanje + 1}}. {{pitanja[trenutnoPitanje]?.naziv}}</h3>
+        <div class="option" *ngFor="let option of pitanja[trenutnoPitanje]?.odgovori">
+          <button class="btn" (click)="selectOption(option.key)"
+            [ngClass]="{'correct': correctKey && option.key === 'tocan_odgovor', 'incorrect': incorrectKey && option.key !== 'tocan_odgovor'}"
+            [disabled]="answer">{{option.value}}</button>
         </div>
-        
         <section class="cntr">Točnih odgovora: {{counter}}/{{trenutnoPitanje + 1}}</section>
-        
         <div *ngIf="trenutnoPitanje < pitanja.length - 1">
-        <button class="dalje" (click)="iducePitanje()" [disabled]="!answer" >Dalje</button>
+          <button class="dalje" (click)="iducePitanje()" [disabled]="!answer">Dalje</button>
         </div>
+        
+          
+        
+      </div>
     </div>
-    </div>
-</div>
-    
+  </div>
   
-
-
-      
-
-

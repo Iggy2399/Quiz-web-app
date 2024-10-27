@@ -1,0 +1,28 @@
+.btn{
+    width: 100%;
+    transition: 0.3s;
+}
+.btn:hover{
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+.vh-100{
+    background-image: url(../Login/backgrnd.jpg
+    );
+}
+.card{
+    background-color: rgba(196, 199, 201, 0.158);
+    border-radius: 5px !important;
+    border-style: solid ;
+    border-color: rgba(0, 0, 0, 0.377);
+}
+#typeEmailX-2{
+    background-color: rgba(255, 255, 255, 0.678);
+}
+#typePasswordX-2{
+    background-color: rgba(255, 255, 255, 0.678);
+
+}
+#ime_prezime{
+    background-color: rgba(255, 255, 255, 0.678);
+}
