@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
 
-# Quiz web application is personal project made with Angular and NoodeJs technology
+# Quiz web application is personal project made with Angular and NodeJs technology
 
 Purpose of this project was learning full stack web development during my student days at FERIT.
 
