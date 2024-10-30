@@ -1,116 +1,114 @@
-.navbar{
-    background-color: whitesmoke
+.navbar {
+  background-color: whitesmoke;
 }
-#dodaj{
-    color: whitesmoke;
-    
+#dodaj {
+  color: whitesmoke;
 }
-#container{
-    
-    display: inline-block;
-    justify-content: space-between ;
-
+#container {
+  display: inline-block;
+  justify-content: space-between;
 }
-#dodaj:hover{
-    background: whitesmoke;
-    color: #18081f;
-    cursor: pointer;
-   
+#dodaj:hover {
+  background: whitesmoke;
+  color: #18081f;
+  cursor: pointer;
 }
-#odjava:hover{
-    background-color: whitesmoke;
-    color: #18081f;
-    cursor: pointer;
-
+#odjava:hover {
+  background-color: whitesmoke;
+  color: #18081f;
+  cursor: pointer;
 }
 
 #input_container {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 .container {
-    margin-top: 5px;
-    
+  margin-top: 5px;
 }
 .table::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-.form-control{
-    display: inline;
+.form-control {
+  display: inline;
 }
 
-#ime{
-    width: 30%;
-    display: inline-flex;
-    margin-right: 5px;
+#ime {
+  width: 30%;
+  display: inline-flex;
+  margin-right: 5px;
 }
-#god_rodenja{
-    width: 30%;
-    display: inline-flex;
-    margin-right: 5px;
+#god_rodenja {
+  width: 30%;
+  display: inline-flex;
+  margin-right: 5px;
 }
-#E-mail{
-    width: 30%;
-    display: inline-flex;
-    margin-right: 10px;
-    position: relative;
+#E-mail {
+  width: 30%;
+  display: inline-flex;
+  margin-right: 10px;
+  position: relative;
 }
-#file-input{
-    margin-top: 5px;
+#file-input {
+  margin-top: 5px;
 }
 
 /* The side navigation menu */
 .sidebar {
-    margin: 0;
-    padding: 0;
-    width: 15%;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #18081f;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
   }
-  
-  /* Sidebar links */
   .sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
+    float: left;
   }
-  
-  /* Active/current link */
-  .sidebar a.active {
-    background-color: #18081f;
-    color: white;
-  }
-  
-  /* Links on mouse-over */
-  .sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-  }
-  
-  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
   div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
+    margin-left: 0;
   }
-  
-  /* On screens that are less than 700px wide, make the sidebar into a topbar */
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
   }
-  
-  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center;
-      float: none;
-    }
-  }
+}

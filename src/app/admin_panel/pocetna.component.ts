@@ -1,7 +1,17 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { CommonModule,} from '@angular/common';
-import { FormsModule, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+import { CommonModule } from '@angular/common';
+import {
+  FormsModule,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../servisi/api.services';
 import { AuthService } from '../../servisi/auth.service';
@@ -10,99 +20,88 @@ import { AuthService } from '../../servisi/auth.service';
   selector: 'app-pocetna',
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
-    RouterOutlet, 
-    RouterLink, 
-    RouterLinkActive, 
+    CommonModule,
+    FormsModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
     ReactiveFormsModule,
   ],
   templateUrl: './pocetna.component.html',
   styleUrl: './pocetna.component.css',
 })
 export class AdminComponent {
-  
   korisnik: any = this.fb.group({
     id: [null],
-    ime: ['',[Validators.required, Validators.minLength(2)]],
+    ime: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', Validators.compose([Validators.required, Validators.email])],
-    
-  })
+  });
 
-
-  
-  korisnici : any;
+  korisnici: any;
   brojKorisnika: number = 0;
-  podaci : any;
-  dataRefresher:any
+  podaci: any;
+  dataRefresher: any;
 
   constructor(
     public _router: Router,
-    private fb : FormBuilder,
+    private fb: FormBuilder,
     private toastr: ToastrService,
-    private api : ApiService,
+    private api: ApiService,
     private auth: AuthService
+  ) {}
 
-  ){}
-
-  Router(){
+  Router() {
     this._router.navigate(['/api-call']);
   }
-  ngOnInit(){
+  ngOnInit() {
     this.dohvatiPodatke();
-    //this.refreshData();  
-    
+    this.refreshData();
   }
-  refreshData(){
-    this.dataRefresher = setInterval(()=>{
+  refreshData() {
+    this.dataRefresher = setInterval(() => {
       this.dohvatiPodatke();
       2000;
-    })
+    });
   }
-  dohvatiPodatke(){
-     this.api.getData().subscribe(res =>{
-       this.korisnici = res.data;
-       this.brojKorisnika = this.korisnici.length
-       console.log(this.korisnici);
-      
-    })
-
+  dohvatiPodatke() {
+    this.api.getData().subscribe((res) => {
+      this.korisnici = res.data;
+      this.brojKorisnika = this.korisnici.length;
+      console.log(this.korisnici);
+    });
   }
-  urediKorisnikaTablica(korisnik: any, index:any){
+  urediKorisnikaTablica(korisnik: any, index: any) {
     console.log(korisnik);
 
-    for(let i = 0; i < this.korisnici.length; i++){
-      if(this.korisnici[i].id == index){
+    for (let i = 0; i < this.korisnici.length; i++) {
+      if (this.korisnici[i].id == index) {
         console.log(this.korisnici[i]);
         this.korisnici.patchValue({
-          'id':  korisnik.id,
-          'ime': korisnik.ime,
-          'god_rodenja': korisnik.god_rodenja,
-          'email': korisnik.email,
-          'slika': korisnik.slika
+          id: korisnik.id,
+          ime: korisnik.ime,
+          god_rodenja: korisnik.god_rodenja,
+          email: korisnik.email,
+          slika: korisnik.slika,
         });
       }
     }
   }
-  
+
   obrisiKorisnika(id: number): void {
     console.log(id);
-    
-    if (confirm(`Želite li obrisati korisnika?` )) {
+
+    if (confirm(`Želite li obrisati korisnika?`)) {
       this.api.deleteKorisnik(id).subscribe(
-        res => {
-          console.log("User deleted:", res);
+        (res) => {
+          console.log('User deleted:', res);
         },
-        err => {
-          console.error("Failed to delete user:", err);
+        (err) => {
+          console.error('Failed to delete user:', err);
         }
       );
     }
   }
-  logout(){
+  logout() {
     this.auth.logout();
   }
- 
-
- 
 }

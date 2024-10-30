@@ -1,93 +1,128 @@
-
 <!-- The sidebar -->
 <div class="sidebar">
-  <a class="active" [routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Home</a>
-  <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
+  <a
+    class="active"
+    [routerLink]="['/admin-panel']"
+    routerLinkActive="router-link-active"
+    >Home</a
+  >
+  <a [routerLink]="['/api-call']" routerLinkActive="router-link-active"
+    >Api JSON</a
+  >
   <a [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Kviz</a>
-  <a [routerLink]="['/registracija']" routerLinkActive="router-link-active">Registracija</a>
- 
+  <a [routerLink]="['/registracija']" routerLinkActive="router-link-active"
+    >Registracija</a
+  >
 </div>
 
 <!-- Page content -->
 
 <div class="content">
-  <div class="container" >
-  
+  <div class="container">
     <!-- Navigacija i forma -->
-  
-        <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark" style="border-radius: 0.5rem;">
-          <div class="container-fluid">
-            <h3 class="navbar-brand">Korisnici</h3>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" id="odjava" [routerLink]="['/prijava']" (click)="logout()" routerLinkActive="router-link-active">Odjava</a>
-                </li>
-              </ul>
-              
-          </div>
-          </div>
-        </nav><hr>
-        <!-- Forma -->
-        <div class="unos">
-          <form class="form"[formGroup]="korisnik" >
-            <input type="text" class="form-control" id="ime" placeholder="Ime i prezime" formControlName="ime">      
-                        
-            <input type="text" class="form-control" id="E-mail" placeholder="E-mail" formControlName="email">
-          
-          
-            <div class="col col-lg-2 col-md-2">
-              <div id="input_container">
-                <button type="submit" class="btn btn-success btn-md">Uredi</button>
-              </div>
-            </div>
-          </form>
+
+    <nav
+      class="navbar bg-dark border-bottom border-body"
+      data-bs-theme="dark"
+      style="border-radius: 0.5rem"
+    >
+      <div class="container-fluid">
+        <h3 class="navbar-brand">Korisnici</h3>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                id="odjava"
+                [routerLink]="['/prijava']"
+                (click)="logout()"
+                routerLinkActive="router-link-active"
+                >Odjava</a
+              >
+            </li>
+          </ul>
         </div>
-      
-    
-    
-    <!-- Tablica -->
-    <div class="panel-heading">Ukupno korisnika: {{brojKorisnika}}</div>
-      <div class="panel-body">
-        <form>
-          <div>
-            <table class="table responsive">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Ime i Prezime</th>
-                  <th scope="col">E-mail</th>
-                  <th scope="col">Uloga</th>
-                  <th class="tablica text-center" scope="col">Uredi | Obriši</th>
-                </tr>
-              </thead>
-              <tbody>
-                <th scope="row"></th>
-                <tr *ngFor="let korisnik of korisnici">
-                  <td>{{korisnik.id}}.</td>
-                  <td>{{korisnik.ime_prezime}}</td>
-                  <td><a href="mailto:">{{korisnik.email}}</a></td>
-                  <td>{{korisnik.uloga}}</td>
-                  
-                  <td class="tablica text-center">
-                    <button class="btn btn-info btn-sm">Uredi</button>
-                    <button class="btn btn-danger btn-sm" (click)="obrisiKorisnika(korisnik.id)">Obriši</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </form>
       </div>
+    </nav>
+    <hr />
+    <!-- Forma -->
+    <div class="unos">
+      <form class="form" [formGroup]="korisnik">
+        <input
+          type="text"
+          class="form-control"
+          id="ime"
+          placeholder="Ime i prezime"
+          formControlName="ime"
+        />
 
-      
+        <input
+          type="text"
+          class="form-control"
+          id="E-mail"
+          placeholder="E-mail"
+          formControlName="email"
+        />
 
-  
-  
+        <div class="col col-lg-2 col-md-2">
+          <div id="input_container">
+            <button type="submit" class="btn btn-success btn-md">Uredi</button>
+          </div>
+        </div>
+      </form>
+    </div>
 
+    <!-- Tablica -->
+    <div class="panel-heading">Ukupno korisnika: {{ brojKorisnika }}</div>
+    <div class="panel-body">
+      <form>
+        <div>
+          <table class="table responsive">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Ime i Prezime</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Uloga</th>
+                <th class="tablica text-center" scope="col">Uredi | Obriši</th>
+              </tr>
+            </thead>
+            <tbody>
+              <th scope="row"></th>
+              <tr *ngFor="let korisnik of korisnici">
+                <td>{{ korisnik.id }}.</td>
+                <td>{{ korisnik.ime_prezime }}</td>
+                <td>
+                  <a href="mailto:">{{ korisnik.email }}</a>
+                </td>
+                <td>{{ korisnik.uloga }}</td>
 
-
-
+                <td class="tablica text-center">
+                  <button class="btn btn-info btn-sm">Uredi</button>
+                  <button
+                    *ngIf="korisnik.uloga == 'igrac'"
+                    class="btn btn-danger btn-sm"
+                    (click)="obrisiKorisnika(korisnik.id)"
+                  >
+                    Obriši
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
