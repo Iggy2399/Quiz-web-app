@@ -41,6 +41,7 @@ export class AdminComponent {
   brojKorisnika: number = 0;
   podaci: any;
   dataRefresher: any;
+  korisnikPodaci: any;
 
   constructor(
     public _router: Router,
@@ -50,12 +51,10 @@ export class AdminComponent {
     private auth: AuthService
   ) {}
 
-  Router() {
-    this._router.navigate(['/api-call']);
-  }
   ngOnInit() {
     this.dohvatiPodatke();
-    this.refreshData();
+    //this.dohvatiPodatkeKorisnika();
+    //this.refreshData();
   }
   refreshData() {
     this.dataRefresher = setInterval(() => {
@@ -67,7 +66,6 @@ export class AdminComponent {
     this.api.getData().subscribe((res) => {
       this.korisnici = res.data;
       this.brojKorisnika = this.korisnici.length;
-      console.log(this.korisnici);
     });
   }
   urediKorisnikaTablica(korisnik: any, index: any) {
@@ -85,6 +83,10 @@ export class AdminComponent {
         });
       }
     }
+  }
+  dohvatiPodatkeKorisnika() {
+    this.korisnikPodaci = this.auth.getUserInfo();
+    console.log(this.korisnikPodaci);
   }
 
   obrisiKorisnika(id: number): void {
