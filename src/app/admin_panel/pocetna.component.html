@@ -6,11 +6,12 @@
     routerLinkActive="router-link-active"
     >Home</a
   >
-  <a [routerLink]="['/api-call']" routerLinkActive="router-link-active"
-    >Api JSON</a
-  >
+
   <a [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Kviz</a>
-  <a [routerLink]="['/registracija']" routerLinkActive="router-link-active"
+  <a
+    *ngIf="!korisnici"
+    [routerLink]="['/registracija']"
+    routerLinkActive="router-link-active"
     >Registracija</a
   >
 </div>
