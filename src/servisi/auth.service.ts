@@ -61,7 +61,7 @@ export class AuthService {
                 return userData ? JSON.parse(userData) : null;
               }
               isLoggedIn() {
-                return !!localStorage.getItem('jwtToken');
+                return localStorage.getItem('jwtToken');
               }
               
             

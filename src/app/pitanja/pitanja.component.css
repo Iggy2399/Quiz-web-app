@@ -7,7 +7,6 @@ h3{
     
     
 }
-
 .app{
     background: #0000003f;
     width: 90%;
@@ -87,36 +86,36 @@ h3{
     color: rgb(228, 228, 228);
 }
 
-/* The side navigation menu */
 .sidebar {
-    color: rgba(255, 255, 255, 0.315) !important;
-    margin: 0;
-    padding: 0;
-    width: 15%;
-    position: relative;
-    height: 100%;
-    overflow: auto;
-  }
+  display: flex;
+  justify-content: left;
+  background-color: #464646b0;
   
+  
+}
+
   /* Sidebar links */
   .sidebar a {
-    
     display: block;
-    color: black;
+    color: rgb(202, 202, 202);
     padding: 16px;
     text-decoration: none;
+    transition: 0.2s;
   }
   
   /* Active/current link */
   .sidebar a.active {
-    background-color: #18081f;
+    background-color: #c08d00;
     color: white;
+    font-size: larger;
+   
   }
   
   /* Links on mouse-over */
   .sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
+    transition: 0.2s;
   }
   
   /* Page content. The value of the margin-left property should match the value of the sidebar's width property */

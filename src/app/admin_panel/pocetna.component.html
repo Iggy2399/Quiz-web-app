@@ -58,13 +58,14 @@
     </nav>
     <hr />
     <!-- Forma -->
+     <div *ngIf="uredivanjeKorisnika == true">
     <div class="unos">
-      <form class="form" [formGroup]="korisnik">
+      <form class="form" [formGroup]="korisnik" (ngSubmit)="updateUserData(korisnik,korisnik.id)">
         <input
           type="text"
           class="form-control"
           id="ime"
-          placeholder="Ime i prezime"
+          placeholder={{korisnikUredi.ime_prezime}}
           formControlName="ime"
         />
 
@@ -72,17 +73,18 @@
           type="text"
           class="form-control"
           id="E-mail"
-          placeholder="E-mail"
+          placeholder={{korisnikUredi.email}}
           formControlName="email"
         />
 
         <div class="col col-lg-2 col-md-2">
           <div id="input_container">
-            <button type="submit" class="btn btn-success btn-md">Uredi</button>
+            <button type="submit" class="btn btn-success btn-md" (click)="updateUserData(korisnik, korisnik.id)">Uredi</button>
           </div>
         </div>
       </form>
     </div>
+     </div>
 
     <!-- Tablica -->
     <div class="panel-heading">Ukupno korisnika: {{ brojKorisnika }}</div>
@@ -110,7 +112,7 @@
                 <td>{{ korisnik.uloga }}</td>
 
                 <td class="tablica text-center">
-                  <button class="btn btn-info btn-sm">Uredi</button>
+                  <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik,korisnik.id)">Uredi</button>
                   <button
                     *ngIf="korisnik.uloga == 'igrac'"
                     class="btn btn-danger btn-sm"
