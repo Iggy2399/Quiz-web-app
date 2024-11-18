@@ -1,8 +1,7 @@
-import { Component, ErrorHandler } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../servisi/auth.service';
-import { User } from '../models/User';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 
@@ -35,9 +34,6 @@ export class RegisterComponent {
                 return this.user.controls
             }
               
-  
-
-
   posaljiPodatke(){
    this.authService.register(this.user.value).subscribe((res)=>{
    console.log(res);

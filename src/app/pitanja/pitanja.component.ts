@@ -25,7 +25,6 @@ export class PitanjaComponent {
   userInfo: any;
 
   constructor(
-    private http: HttpClient,
     private api: ApiService,
     private authService: AuthService
   ) {}
@@ -98,5 +97,10 @@ export class PitanjaComponent {
   }
   odjava() {
     this.authService.logout();
+  }
+
+  getUserInfo(){
+    this.authService.getUserInfo();
+    
   }
 }

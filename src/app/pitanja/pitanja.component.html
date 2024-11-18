@@ -1,4 +1,6 @@
-<div class="sidebar">
+<header>
+  <div class="sidebar">
+    
     <a class="active" [routerLink]="['/pitanja']" routerLinkActive="router-link-active">Kviz</a>
     <a [routerLink]="['/profil']" routerLinkActive="router-link-active">{{userInfo.ime_prezime}}</a>
     <a [routerLink]="['/api-call']" routerLinkActive="router-link-active">Api JSON</a>
@@ -6,9 +8,14 @@
     <a *ngIf=""[routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Admin panel</a>
     <a [routerLink]="['']" routerLinkActive="router-link-active" (click)="restartQuiz()">Igraj ponovno</a>
     <a [routerLink]="['']" routerLinkActive="router-link-active" (click)="odjava()">Odjava</a>
-
     
   </div>
+
+</header>
+
+
+    
+  
   
   <div class="vh-100">
     <div class="container py-5 h-100">

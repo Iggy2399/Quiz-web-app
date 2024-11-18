@@ -1,18 +1,7 @@
 import { Component } from '@angular/core';
-import {
-  Router,
-  RouterLink,
-  RouterLinkActive,
-  RouterOutlet,
-} from '@angular/router';
+import {Router,RouterLink,RouterLinkActive,RouterOutlet,} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  FormsModule,
-  FormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import {FormsModule,FormBuilder,ReactiveFormsModule,Validators, FormGroup, FormControl,} from '@angular/forms';
 import { ApiService } from '../../servisi/api.services';
 import { AuthService } from '../../servisi/auth.service';
 
@@ -39,22 +28,36 @@ export class AdminComponent {
 
   korisnici: any;
   brojKorisnika: number = 0;
-  podaci: any;
   dataRefresher: any;
   korisnikPodaci: any;
+  uredivanjeKorisnika : boolean = false;
+  korisnikUredi: any;
+  user:FormGroup;
 
   constructor(
     public _router: Router,
     private fb: FormBuilder,
-    private toastr: ToastrService,
     private api: ApiService,
     private auth: AuthService
-  ) {}
+  ) {
+
+        this.user = new FormGroup({
+           email : new FormControl('', [Validators.email, Validators.required]),
+            ime_prezime : new FormControl('', [Validators.required, Validators.min(2)])
+        }) 
+    }
+        get fc(){
+          return this.user.controls
+        }
 
   ngOnInit() {
     this.dohvatiPodatke();
     //this.dohvatiPodatkeKorisnika();
     //this.refreshData();
+  }
+  dohvatiPodatkeKorisnika() {
+    this.korisnikPodaci = this.auth.getUserInfo();
+    console.log(this.korisnikPodaci);
   }
   refreshData() {
     this.dataRefresher = setInterval(() => {
@@ -69,27 +72,22 @@ export class AdminComponent {
     });
   }
   urediKorisnikaTablica(korisnik: any, index: any) {
-    console.log(korisnik);
-
-    for (let i = 0; i < this.korisnici.length; i++) {
-      if (this.korisnici[i].id == index) {
-        console.log(this.korisnici[i]);
-        this.korisnici.patchValue({
-          id: korisnik.id,
-          ime: korisnik.ime,
-          god_rodenja: korisnik.god_rodenja,
-          email: korisnik.email,
-          slika: korisnik.slika,
-        });
-      }
+    this.uredivanjeKorisnika = true; 
+    console.log(korisnik); // 
+    const selectedUser = this.korisnici.find((user: any) => user.id === index);
+    if (selectedUser) {
+      this.korisnikUredi = selectedUser;
+    } else {
+      console.error("User not found");
     }
   }
-  dohvatiPodatkeKorisnika() {
-    this.korisnikPodaci = this.auth.getUserInfo();
-    console.log(this.korisnikPodaci);
-  }
+  updateUserData(korisnik: any, id: any){
+    this.auth.updateData(korisnik, id);
 
-  obrisiKorisnika(id: number): void {
+  }
+  
+
+  obrisiKorisnika(id: number) {
     console.log(id);
 
     if (confirm(`Želite li obrisati korisnika?`)) {
