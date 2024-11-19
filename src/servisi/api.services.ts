@@ -39,8 +39,11 @@ export class ApiService {
   deleteKorisnik(id: number): Observable<any> {
     return this._http.post<any>(`${this.apiUrl}obrisi_korisnika/`, { id });
   }
-  fetchJson() {
-    return this._http.get('');
-  }
-  
+ 
+  fetchQuestion(urlAttachemnt : number){
+    return this._http.get(`
+      https://opentdb.com/api.php?amount=10&category=${String(urlAttachemnt)}`)
+        .pipe(map((res:any)=>res));
+
+  } 
 }
