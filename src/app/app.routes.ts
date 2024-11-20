@@ -7,8 +7,13 @@ import { ApiCallComponent } from './api-call/api-call.component';
 import { PitanjaComponent } from './pitanja/pitanja.component';
 import { RegisterComponent } from './register/register.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 export const routes: Routes = [
+  {
+    path:'landing-page',
+    component: LandingPageComponent
+  },
   {
     path: 'login',
     component: LoginComponent,

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../servisi/api.services';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../servisi/auth.service';
