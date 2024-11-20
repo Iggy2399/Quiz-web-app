@@ -6,7 +6,27 @@
     <title>Landing Page</title>
 </head>
 <body>
-    <button id="btn-fetch" (click)="fetchRandomQuestion(10)">Fetch random question</button>
     
+    <div class="container">
+    <h3>Choose category you want from dropdown:</h3>
+    <div class="dropdown">
+        <select class="dropbtn">
+        <option>Select category</option>
+        </select>
+        <div class="dropdown-content">
+            <a (click)="fetchRandomQuestion(9)">General Knowledge</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+        </div>
+    </div>
+        
+        <table>
+                <tr  *ngFor="let pitanje of pitanja">{{pitanje.question}} <hr></tr>
+            
+    
+    
+        </table>
+
+    </div>
 </body>
 </html>
