@@ -6,6 +6,9 @@ displaying questions from MySql database, making API calls from backend and play
 Project has CRUD functionalities, and JWT token authentication and authorization.
 Admin panel is reachable only to administrator which was accomplished using Auth Guard services.
 
+# Project images
+![Login page](https://github.com/user-attachments/assets/92a01b02-8255-456f-a35d-e22f05fe8d64)
+
 
 # Projekt
 
