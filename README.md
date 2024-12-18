@@ -1,6 +1,6 @@
 # Quiz web application is personal project made with Angular and NodeJs technology.
 
-Purpose of this project was learning full stack web development in Angular framework for front-end and NodeJs back-end during my student days at FERIT.
+This project was learning full stack web development in Angular framework for front-end and NodeJs back-end during my student days at FERIT.
 This web application is not fully made and polished, but core and essential functionalities like login and register system, 
 displaying questions from MySql database, making API calls from backend and playing quiz is done.
 Project has CRUD functionalities, and JWT token authentication and authorization.
