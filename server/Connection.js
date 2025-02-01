@@ -1,14 +1,18 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
+require('dotenv').config();
+console.log("DB User:", process.env.MYSQL_USER); // Debugging
+console.log("DB Password:", process.env.MYSQL_PASSWORD); // Debugging
+
 
  function Connection(){
      this.pool = null;
      this.init = function(){
          this.pool = mysql.createPool({
             
-            host:'localhost',
-            user: 'root',
-            password: null,
-            database: 'kviz'
+            host: process.env.MYSQL_HOST,
+            user: process.env.MYSQL_USER,
+            password: process.env.MYSQL_PASSWORD,
+            database: process.env.MYSQL_DATABASE
         });
         
         

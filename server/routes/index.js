@@ -10,6 +10,7 @@ const obrisi = require('./brisanje.js');
 
 
 
+
 router.post('/api/login', prijava.korisnikLogin);
 router.post('/api/register',registracija.korisnikRegister);
 router.get('/api/prikaz_korisnika',prikazKorisnika.korisnikPrikaz);
@@ -17,4 +18,5 @@ router.patch('/api/edit_user', uredivanjeKorisnika.korisnikUredi);
 router.get('/api/pitanja',pitanje.dohvatiPitanje);
 router.patch('/api/azuriraj_bodove', rankList.rankLista);
 router.post('/api/obrisi_korisnika/',obrisi.brisanje);
+
 module.exports = router;
