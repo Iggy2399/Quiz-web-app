@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const funkcije = require('./funkcije');
 
 
-const JWT_SECRET = process.env.JWT_SECRET || 'tajni kljuc';
+const JWT_SECRET = 'tajni kljuc';
 
 var korisnik = {
     korisnikLogin: function(req, res, next) {
