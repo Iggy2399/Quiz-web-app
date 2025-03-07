@@ -11,7 +11,6 @@ import { AuthService } from '../../servisi/auth.service';
   imports: [
     CommonModule,
     FormsModule,
-    RouterOutlet,
     RouterLink,
     RouterLinkActive,
     ReactiveFormsModule,
@@ -53,7 +52,7 @@ export class AdminComponent {
   ngOnInit() {
     this.dohvatiPodatke();
     //this.dohvatiPodatkeKorisnika();
-    //this.refreshData();
+    this.refreshData();
   }
   dohvatiPodatkeKorisnika() {
     this.korisnikPodaci = this.auth.getUserInfo();
@@ -62,9 +61,15 @@ export class AdminComponent {
   refreshData() {
     this.dataRefresher = setInterval(() => {
       this.dohvatiPodatke();
-      2000;
-    });
+    }, 2000); // Properly set interval time
   }
+  ngOnDestroy() {
+    if (this.dataRefresher) {
+      clearInterval(this.dataRefresher);
+    }
+  }
+  
+  
   dohvatiPodatke() {
     this.api.getData().subscribe((res) => {
       this.korisnici = res.data;

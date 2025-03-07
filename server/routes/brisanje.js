@@ -1,4 +1,3 @@
-const mysql = require('mysql');
 const funkcije = require('./funkcije');
 
 var obrisiKorisnika = {

@@ -1,9 +1,9 @@
+require('dotenv').config();
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const funkcije = require('./funkcije');
 
-
-const JWT_SECRET = 'tajni kljuc';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 var korisnik = {
     korisnikLogin: function(req, res, next) {
@@ -36,7 +36,7 @@ var korisnik = {
                         const token = jwt.sign(
                             { id: user.id, email: user.email },
                             JWT_SECRET,
-                            { expiresIn: '30m' } // Token expires in 1 hour
+                            { expiresIn: '30m' } // 30 minutes expiration
                         );
 
                         
