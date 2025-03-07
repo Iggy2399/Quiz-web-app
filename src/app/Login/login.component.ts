@@ -21,7 +21,6 @@ import { ApiService } from '../../servisi/api.services';
   standalone: true,
   selector: 'app-login',
   imports: [
-    RouterOutlet,
     RouterLink,
     RouterLinkActive,
     FormsModule,
@@ -45,7 +44,6 @@ export class LoginComponent {
     public router: Router,
     private toastr: ToastrService,
     private authService: AuthService,
-    private api: ApiService
   ) {
     this.user = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),

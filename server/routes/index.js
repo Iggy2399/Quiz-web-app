@@ -9,8 +9,6 @@ const rankList = require('./rank_list.js');
 const obrisi = require('./brisanje.js');
 
 
-
-
 router.post('/api/login', prijava.korisnikLogin);
 router.post('/api/register',registracija.korisnikRegister);
 router.get('/api/prikaz_korisnika',prikazKorisnika.korisnikPrikaz);

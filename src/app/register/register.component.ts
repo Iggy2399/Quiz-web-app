@@ -23,7 +23,6 @@ export class RegisterComponent {
               private authService : AuthService){
 
                 this.user = new FormGroup({
-                  admin : new FormControl(),
                   email : new FormControl('', [Validators.email, Validators.required]),
                   lozinka : new FormControl('', [Validators.minLength(5), Validators.maxLength(12), Validators.required]),
                   ime_prezime : new FormControl('', [Validators.required, Validators.min(2)])

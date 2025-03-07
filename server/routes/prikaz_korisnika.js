@@ -5,11 +5,11 @@ var prikazKorisnika ={
         let query = "SELECT * FROM korisnici";
         
         funkcije.mysql_query(query, function(podaci){
-            console.log(podaci.data.length);
+            //console.log(podaci.data.length);
             if(podaci.data.length===0){
                 res.json({message: "Baza podataka je prazna"})
             }else{
-                console.log(podaci);
+                //console.log(podaci);
                 res.json(podaci)
             }
        })

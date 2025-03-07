@@ -73,8 +73,9 @@ export class AuthService {
       )
 
   }
-  updateData(user:any, id:string):Observable<User>{
-    return this.http.patch<User>(this.urlEdit,user,this.httpOptions).pipe(
+  updateData(ime:string, email:string):Observable<any>{
+    const body = {ime, email}
+    return this.http.patch<User>(this.urlEdit,this.httpOptions).pipe(
       first(),
       catchError(this.errorHandlerService.handleError<User>("update"))
     )

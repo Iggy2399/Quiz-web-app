@@ -60,7 +60,7 @@
     <!-- Forma -->
      <div *ngIf="uredivanjeKorisnika == true">
     <div class="unos">
-      <form class="form" [formGroup]="korisnik" (ngSubmit)="updateUserData(korisnik,korisnik.id)">
+      <form class="form" [formGroup]="korisnik" (ngSubmit)="updateUserData(korisnik, korisnik.id)">
         <input
           type="text"
           class="form-control"
@@ -79,7 +79,7 @@
 
         <div class="col col-lg-2 col-md-2">
           <div id="input_container">
-            <button type="submit" class="btn btn-success btn-md" (click)="updateUserData(korisnik, korisnik.id)">Uredi</button>
+            <button type="submit" class="btn btn-success btn-md" (click)="updateUserData(korisnik,korisnik.id)">Uredi</button>
           </div>
         </div>
       </form>
@@ -112,11 +112,11 @@
                 <td>{{ korisnik.uloga }}</td>
 
                 <td class="tablica text-center">
-                  <button class="btn btn-info btn-sm" (click)="urediKorisnikaTablica(korisnik,korisnik.id)">Uredi</button>
+                  <button class="btn btn-info btn-sm" (click)="editUserTable(korisnik,korisnik.id)">Uredi</button>
                   <button
                     *ngIf="korisnik.uloga == 'igrac'"
                     class="btn btn-danger btn-sm"
-                    (click)="obrisiKorisnika(korisnik.id)"
+                    (click)="deleteUser(korisnik,korisnik.id)"
                   >
                     Obriši
                   </button>
