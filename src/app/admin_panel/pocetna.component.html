@@ -79,7 +79,7 @@
 
         <div class="col col-lg-2 col-md-2">
           <div id="input_container">
-            <button type="submit" class="btn btn-success btn-md" (click)="updateUserData(korisnik,korisnik.id)">Uredi</button>
+            <button type="submit" mat-raised-button color="primary"  (click)="updateUserData(korisnik,korisnik.id)">Uredi</button>
           </div>
         </div>
       </form>
@@ -109,16 +109,18 @@
                 <td>
                   <a href="mailto:">{{ korisnik.email }}</a>
                 </td>
-                <td>{{ korisnik.uloga }}</td>
+                <td> {{ korisnik.uloga }}</td>
 
                 <td class="tablica text-center">
-                  <button class="btn btn-info btn-sm" (click)="editUserTable(korisnik,korisnik.id)">Uredi</button>
+                  <button mat-icon-button color="" (click)="editUserTable(korisnik,korisnik.id)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
                   <button
                     *ngIf="korisnik.uloga == 'igrac'"
-                    class="btn btn-danger btn-sm"
+                    mat-icon-button color="warn"
                     (click)="deleteUser(korisnik,korisnik.id)"
                   >
-                    Obriši
+                    <mat-icon>delete</mat-icon>
                   </button>
                 </td>
               </tr>

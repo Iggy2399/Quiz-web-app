@@ -6,6 +6,12 @@ import { ApiService } from '../../servisi/api.services';
 import { AuthService } from '../../servisi/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+
 @Component({
   selector: 'app-pocetna',
   standalone: true,
@@ -15,6 +21,11 @@ import { ToastrService } from 'ngx-toastr';
     RouterLink,
     RouterLinkActive,
     ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatIconModule,
   ],
   templateUrl: './pocetna.component.html',
   styleUrl: './pocetna.component.css',
@@ -58,7 +69,7 @@ export class AdminComponent {
   refreshData() {
     this.dataRefresher = setInterval(() => {
       this.fetchAllUserData();
-    }, 2000);
+    },500);
   }
 
   ngOnDestroy() {
@@ -89,12 +100,12 @@ export class AdminComponent {
   }
   
   deleteUser(korisnik:any, id: number, ) {
-    this.toastr.warning("Želite li obrisati korisnika?")
     console.log(id);
     if (confirm(`Želite li obrisati korisnika ${korisnik.ime_prezime}?`)) {
       this.api.deleteKorisnik(id).subscribe(
         (res) => {
           console.log('User deleted:', res);
+          this.toastr.success(`Korisnik ${korisnik.ime_prezime} uspješno obrisan`);
         },
         (err) => {
           console.error('Failed to delete user:', err);
