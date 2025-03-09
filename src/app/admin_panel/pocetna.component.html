@@ -116,12 +116,12 @@
                     <mat-icon>edit</mat-icon>
                   </button>
                   <button
-                    *ngIf="korisnik.uloga == 'igrac'"
-                    mat-icon-button color="warn"
-                    (click)="deleteUser(korisnik,korisnik.id)"
-                  >
-                    <mat-icon>delete</mat-icon>
-                  </button>
+                  *ngIf="korisnik.uloga == 'igrac'"
+                  mat-icon-button color="warn"
+                  (click)="deleteUser(korisnik,korisnik.id)">
+                  <mat-icon>delete</mat-icon>
+                  <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
+                </button>
                 </td>
               </tr>
             </tbody>

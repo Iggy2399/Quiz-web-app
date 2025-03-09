@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-pocetna',
@@ -26,6 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatSlideToggleModule,
     MatTableModule,
     MatIconModule,
+    MatProgressBarModule,
   ],
   templateUrl: './pocetna.component.html',
   styleUrl: './pocetna.component.css',
@@ -43,7 +45,8 @@ export class AdminComponent {
   korisnikPodaci: any;
   uredivanjeKorisnika : boolean = false;
   korisnikUredi: any;
-  user:FormGroup;
+  user : FormGroup;
+  isLoading : boolean = false;
 
   constructor(
     public _router: Router,
@@ -69,7 +72,7 @@ export class AdminComponent {
   refreshData() {
     this.dataRefresher = setInterval(() => {
       this.fetchAllUserData();
-    },500);
+    },1000);
   }
 
   ngOnDestroy() {
@@ -83,6 +86,7 @@ export class AdminComponent {
       this.brojKorisnika = this.korisnici.length;
     });
   }
+
   editUserTable(korisnik: any, index: any) {
     this.uredivanjeKorisnika = true; 
     console.log(korisnik); // 
@@ -99,21 +103,26 @@ export class AdminComponent {
     })
   }
   
-  deleteUser(korisnik:any, id: number, ) {
+  deleteUser(korisnik:any, id: number) {
+    this.isLoading = true;
     console.log(id);
     if (confirm(`Želite li obrisati korisnika ${korisnik.ime_prezime}?`)) {
       this.api.deleteKorisnik(id).subscribe(
-        (res) => {
-          console.log('User deleted:', res);
-          this.toastr.success(`Korisnik ${korisnik.ime_prezime} uspješno obrisan`);
-        },
-        (err) => {
-          console.error('Failed to delete user:', err);
-        }
+      (res) => {
+        console.log('User deleted:', res);
+        this.toastr.success(`Korisnik ${korisnik.ime_prezime} uspješno obrisan`);
+        this.isLoading = false;
+      },
+      (err) => {
+        console.error('Failed to delete user:', err);
+        this.isLoading = false;
+      }
       );
+    } else {
+      this.isLoading = false;
     }
+   
   }
-
   logout() {
     this.auth.logout();
   }
