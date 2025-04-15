@@ -15,7 +15,7 @@ Admin panel is reachable only to administrator which was accomplished using Auth
 ![Register page](https://github.com/user-attachments/assets/a01b4773-205f-42d0-9a1b-7f3ab77acb02)
 
 ## Admin panel
-![Admin panel](https://github.com/user-attachments/assets/3fb55ac1-71ea-45c8-a97e-c0a5161af5f8)
+![Admin panel](https://github.com/user-attachments/assets/50ac99bf-bd26-4409-b0f4-c8854b19331e)
 
 ## Playing quiz
 ![Kviz](https://github.com/user-attachments/assets/1722884c-d32a-4ce3-8343-a417a5d2ab4d)
