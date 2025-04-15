@@ -1,4 +1,4 @@
-# Quiz web application is personal project made with Angular and NodeJs technology.
+# Quiz Full Stack Web Application is personal project made with Angular and NodeJs technology.
 
 This project was learning full stack web development in Angular framework for front-end and NodeJs back-end.
 This web application is not fully made and polished, but core and essential functionalities like login and register system, 
