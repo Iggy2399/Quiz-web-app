@@ -4,7 +4,8 @@ This project was learning full stack web development in Angular framework for fr
 This web application is not fully made and polished, but core and essential functionalities like login and register system, 
 displaying questions from MySql database, making API calls from backend and playing quiz is done.
 Project has CRUD functionalities, and JWT token authentication and authorization.
-Admin panel is reachable only to administrator which was accomplished using Auth Guard services.
+Admin panel is reachable only to administrator which was accomplished using Auth Guard services. 
+Angular material was used for some of UI components.
 
 # Project images
 
