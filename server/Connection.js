@@ -1,8 +1,5 @@
 require('dotenv').config();
 const mysql = require('mysql2');
-console.log("DB User:", process.env.MYSQL_USER); // Debugging
-console.log("DB Password:", process.env.MYSQL_PASSWORD); // Debugging
-
 
  function Connection(){
      this.pool = null;
