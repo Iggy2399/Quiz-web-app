@@ -10,10 +10,8 @@ import { first, catchError } from 'rxjs';
 })
 export class AuthService {
   [x: string]: any;
-  private urlLogin = "http://localhost:3000/api/login";
   private urlRegister = "http://localhost:3000/api/register"
   private urlEdit = "http://localhost:3000/api/edit_user"
-  private urlDelete = "http://localhost:3000/api/obrisi_korisnika"
   httpOptions : {headers:HttpHeaders}={
     headers : new HttpHeaders({"Content-Type":"application/json"}),
   }
@@ -21,10 +19,7 @@ export class AuthService {
               private errorHandlerService : ErrorHandlerService,
              ) { }
 
-              private loginUrl = 'http://localhost:3000/api/login'; // Your login API URL
-
-              
-            
+              private loginUrl = 'http://localhost:3000/api/login'; 
               login(email: string, lozinka: string): Observable<any> {
                 const body = { email, lozinka };
                 return this.http.post<any>(this.loginUrl, body).pipe(
@@ -64,8 +59,6 @@ export class AuthService {
                 return localStorage.getItem('jwtToken');
               }
               
-            
-  
   register(user:Omit<User,"id, uloga">):Observable<User>{
     return this.http.post<User>(this.urlRegister,user, this.httpOptions).pipe(
       first(),
